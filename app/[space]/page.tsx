@@ -85,7 +85,7 @@ const spacesData: Record<string, SpaceDetails> = {
     tagline: "Serenity by the Shore",
     category: "Ceremony Sites",
     img: "/images/willow.jpg",
-    position: "object-center",
+    position: "object-[30%_98%]",
     description: 'This wedding site is settled directly beside the lake, edged in by a beautiful stone sea wall. The willow tree is full of symbolism such as hope and safety. Say "I do" at our Willow site, declaring to be a source of hope and safety for your life-long partner.',
     highlights: [
       "Waterfront ceremony setting framed by a weeping willow tree",

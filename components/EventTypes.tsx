@@ -18,7 +18,7 @@ const events = [
   },
   {
     title: "Graduations",
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-10.jpg",
+    img: "/images/Graduation.png",
     description: "Is someone close to you wrapping up high school, college, or a special training? Let us help you celebrate their hard work!",
   },
 ];

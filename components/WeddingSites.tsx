@@ -8,14 +8,14 @@ const sites = [
   {
     name: "Oaklin",
     slug: "oaklin",
-    img: "/images/Oaklin/IMG_1978.JPG",
-    position: "object-bottom",
+    img: "/images/Oaklin/oaklin-night-square.jpg",
+    position: "object-center",
     description: "Settled under a beautiful aged oak tree, this wedding site is a perfect place to unite together in a marriage as strong and resilient as the oak itself.",
   },
   {
     name: "Willow",
     slug: "willow",
-    img: "/images/willow.jpg",
+    img: "/images/Willow/willow-2.jpg",
     position: "object-center",
     description: 'This wedding site is settled directly beside the lake, edged in by a beautiful stone sea wall. The willow tree is full of symbolism such as hope and safety. Say "I do" at our Willow site, declaring to be a source of hope and safety for your life-long partner.',
   },
