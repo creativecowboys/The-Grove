@@ -19,6 +19,7 @@ const videos = [
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -89,15 +90,45 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
-              className="relative aspect-video ring-1 ring-white/10"
+              className="relative aspect-video ring-1 ring-white/10 overflow-hidden bg-black"
             >
-              <iframe
-                src={`https://www.youtube.com/embed/${video.id}`}
-                title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
+              {activeVideo === video.id ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}?autoplay=1`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setActiveVideo(video.id)}
+                  aria-label={`Play video: ${video.title}`}
+                  className="group absolute inset-0 w-full h-full cursor-pointer"
+                >
+                  <img
+                    src={`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`}
+                    alt={video.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/10" />
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <span className="flex items-center justify-center w-20 h-20 rounded-full bg-black/55 ring-1 ring-white/30 transition-all group-hover:bg-gold group-hover:scale-105">
+                      <svg viewBox="0 0 24 24" className="w-8 h-8 ml-1 fill-white" aria-hidden="true">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </span>
+                  <span className="absolute bottom-0 left-0 right-0 p-5 text-left bg-gradient-to-t from-black/70 to-transparent">
+                    <span className="block font-serif text-lg text-white">{video.title}</span>
+                  </span>
+                </button>
+              )}
             </motion.div>
           ))}
         </div>
