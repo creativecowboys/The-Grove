@@ -186,7 +186,7 @@ export default function SpacePage() {
             }}
           />
         </div>
-        <div className="relative z-10 text-center text-white px-6">
+        <div className="relative z-10 text-center text-white px-6 cursor-default select-none">
           <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4">
             {space.category}
           </p>

@@ -18,7 +18,7 @@ export default function AboutPage() {
             style={{ filter: "brightness(0.35)" }}
           />
         </div>
-        <div className="relative z-10 text-center text-white px-6">
+        <div className="relative z-10 text-center text-white px-6 cursor-default select-none">
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}

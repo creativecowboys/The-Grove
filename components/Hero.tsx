@@ -32,7 +32,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto pt-40">
+      <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto pt-40 cursor-default select-none">
         {/* Badge */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -92,7 +92,7 @@ export default function Hero() {
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-3 bg-gold hover:bg-gold-dark text-white text-sm font-bold tracking-widest uppercase px-8 py-4 transition-all duration-300"
+            className="group inline-flex items-center gap-3 bg-gold hover:bg-gold-dark text-white text-sm font-bold tracking-widest uppercase px-8 py-4 transition-all duration-300 cursor-pointer"
           >
             Book Free Tour Now
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -101,7 +101,7 @@ export default function Hero() {
             href="https://www.youtube.com/watch?v=L3lOQTmOvv0"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 border border-white/50 hover:border-gold text-white hover:text-gold text-sm font-bold tracking-widest uppercase px-8 py-4 transition-all duration-300"
+            className="inline-flex items-center gap-3 border border-white/50 hover:border-gold text-white hover:text-gold text-sm font-bold tracking-widest uppercase px-8 py-4 transition-all duration-300 cursor-pointer"
           >
             Watch Video
           </a>
