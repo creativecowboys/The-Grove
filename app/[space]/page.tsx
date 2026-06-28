@@ -25,7 +25,7 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "Bridal Suite",
     tagline: "A Private Sanctuary for Preparation",
     category: "Luxury Amenities",
-    img: "/images/grove/bridal-suite.jpg",
+    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-19.jpg",
     position: "object-center",
     description: "Our Bridal Suite is nestled within The Barn featuring three hair & make up vanities with a large open sitting area. The Bridal Suite is also equipped with a kitchen, coffee bar, microwave, refrigerator. Last, but not least, a luxurious bath with free standing tub, large tile shower, double vanity and water closet.",
     highlights: [
@@ -91,8 +91,10 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "The Barn",
     tagline: "Rustic Grandeur and Modern Luxury",
     category: "Venue Features",
-    img: "/images/grove/barn.jpg",
+    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-90.jpg",
     position: "object-center",
+    sideImg: "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
+    sidePosition: "object-center",
     description: "7,200 sq ft of conditioned or open air space overlooking the lake, with tables and chairs for up to 250 guests. This space also features a fireplace and TV.",
     highlights: [
       "7,200 sq ft of conditioned or open air space overlooking the lake",
