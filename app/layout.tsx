@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -36,6 +37,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${lato.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white">
+        <ScrollToTop />
         <Header />
         <main className="flex-grow pt-[104px] md:pt-[116px]">{children}</main>
         <Footer />
