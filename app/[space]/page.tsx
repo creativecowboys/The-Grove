@@ -39,8 +39,10 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "Grooms Lodge",
     tagline: "Relax, Unwind, and Connect",
     category: "Luxury Amenities",
-    img: "/images/grove/grooms-lodge.jpg",
+    img: "/images/grove/grooms-lodge-hero.jpg",
     position: "object-center",
+    sideImg: "/images/grove/grooms-lodge.jpg",
+    sidePosition: "object-center",
     description: "Our Grooms Lodge offers a private space with a living room, game room, pool table, shuffle board, and large screen tv. We are also equipped with a full bath and dressing room. Groomsmen also have access to our patio and pool area.",
     highlights: [
       "Private space with a living room and game room",
