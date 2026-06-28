@@ -8,12 +8,12 @@ import Link from "next/link";
 const events = [
   {
     title: "Weddings",
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The_GroveatDeFoorFarms_October_2024-64-scaled.jpg",
+    img: "/images/weddings.jpg",
     description: "Your wedding day should be as special as the person you are choosing to spend the rest of your life with. With our 3 beautiful wedding sights, as well as grooms lodge and bridal suite, we have everything you need to make your special day perfect.",
   },
   {
     title: "Corporate Events",
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-3.jpg",
+    img: "/images/corporate-events.jpg",
     description: "Whether you are hosting a fundraiser, revealing the next phase of your company, or simply celebrating your employees. We offer the perfect opportunity for team building, including areas for a cookout and relaxing. As well as fishing our fully stocked lake.",
   },
   {

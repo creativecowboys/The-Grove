@@ -8,14 +8,14 @@ const features = [
   {
     title: "The Barn",
     slug: "the-barn",
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-90.jpg",
+    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-90.jpg",
     description: "7,200 sq ft of conditioned or open air space overlooking the lake, with tables and chairs for up to 200 guests. This space also features a fireplace and TV.",
     detail: "Up to 200 Guests · 7,200 Sq Ft · Fireplace & TV",
   },
   {
     title: "The Lake",
     slug: "the-lake",
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-50.jpg",
+    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-50.jpg",
     description: "We have a beautiful 6 acre lake with two docks. The first dock features a covered seating area while the second dock features a swing. We also have several seating areas around the lake to view the beautiful lit fountain.",
     detail: "6 Acres · Two Docks · Lit Fountain",
   },

@@ -8,19 +8,19 @@ const amenities = [
   {
     title: "Bridal Suite",
     slug: "bridal-suite",
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-19.jpg",
+    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-19.jpg",
     description: "Our Bridal Suite is nestled within The Barn featuring three hair & make up vanities with a large open sitting area. The Bridal Suite is also equipped with a kitchen, coffee bar, microwave, refrigerator. Last, but not least, a luxurious bath with free standing tub, large tile shower, double vanity and water closet.",
   },
   {
     title: "Grooms Lodge",
     slug: "grooms-lodge",
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-4Web.jpg",
+    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-4Web.jpg",
     description: "Our Grooms Lodge offers a private space with a living room, game room, pool table, shuffle board, and large screen tv. We are also equipped with a full bath and dressing room. Groomsmen also have access to our patio and pool area.",
   },
   {
     title: "Warming Kitchen",
     slug: null,
-    img: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-31.jpg",
+    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-31.jpg",
     description: "We want to make your event as memorable as possible. To assist with this we have a warming kitchen equipped with a refrigerator, ice machine, stainless steel work tables, a 3 compartment sink, 2 warming ovens, as well as a 2 compartment sink.",
   },
 ];

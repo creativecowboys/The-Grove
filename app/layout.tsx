@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "The Grove at DeFoor Farm | West Georgia's Premiere Event Venue",
   description: "The Grove at DeFoor Farm — Where Shared Memories Are Made. Beautiful weddings, corporate retreats, and social events in West Georgia.",
   icons: {
-    icon: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/04/TheGroveLogo-1024x172.png",
+    icon: "/images/grove/TheGroveLogo-1024x172.png",
   },
 };
 

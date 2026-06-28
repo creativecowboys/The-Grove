@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="flex flex-col items-center text-center">
           {/* Logo */}
           <img
-            src="https://thegroveatdefoorfarm.com/wp-content/uploads/2024/04/TheGroveLogoWhite-1024x183.png"
+            src="/images/grove/TheGroveLogoWhite-1024x183.png"
             alt="The Grove at DeFoor Farm"
             className="h-12 w-auto mb-8 opacity-90"
           />

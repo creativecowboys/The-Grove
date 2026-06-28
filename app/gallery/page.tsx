@@ -9,32 +9,32 @@ const categories = ["All", "Ceremony Sites", "The Barn", "The Lake", "Amenities"
 
 const galleryImages = [
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The_GroveatDeFoorFarms_October_2024-77-scaled.jpg",
+    src: "/images/grove/The_GroveatDeFoorFarms_October_2024-77-scaled.jpg",
     title: "Willow Ceremony Site",
     category: "Ceremony Sites",
   },
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The_GroveatDeFoorFarms_October_2024-48-scaled.jpg",
+    src: "/images/grove/The_GroveatDeFoorFarms_October_2024-48-scaled.jpg",
     title: "The Grove Ceremony Site",
     category: "Ceremony Sites",
   },
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-90.jpg",
+    src: "/images/grove/The-Grove-at-Defoor-Farms_2500-90.jpg",
     title: "The Barn Exterior",
     category: "The Barn",
   },
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-19.jpg",
+    src: "/images/grove/The-Grove-at-Defoor-Farms_2500-19.jpg",
     title: "Bridal Suite Vanity",
     category: "Amenities",
   },
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-4Web.jpg",
+    src: "/images/grove/The-Grove-at-Defoor-Farms_2500-4Web.jpg",
     title: "Grooms Lodge Lounge",
     category: "Amenities",
   },
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-50.jpg",
+    src: "/images/grove/The-Grove-at-Defoor-Farms_2500-50.jpg",
     title: "The 6-Acre Lake",
     category: "The Lake",
   },
@@ -44,12 +44,12 @@ const galleryImages = [
     category: "The Lake",
   },
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-31.jpg",
+    src: "/images/grove/The-Grove-at-Defoor-Farms_2500-31.jpg",
     title: "Warming Kitchen Facilities",
     category: "Amenities",
   },
   {
-    src: "https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-10.jpg",
+    src: "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
     title: "Wedding Reception",
     category: "Events",
   },

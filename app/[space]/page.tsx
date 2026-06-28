@@ -25,7 +25,7 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "Bridal Suite",
     tagline: "A Private Sanctuary for Preparation",
     category: "Luxury Amenities",
-    img: "/images/bridal-suite.jpg",
+    img: "/images/grove/bridal-suite.jpg",
     position: "object-center",
     description: "Nestled within The Barn, our Bridal Suite is designed to offer comfort, luxury, and a perfect prep space for the bridal party. From professional makeup setups to a private kitchen and luxurious bath, every detail has been curated to make your wedding morning prep stress-free.",
     highlights: [
@@ -40,7 +40,7 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "Grooms Lodge",
     tagline: "Relax, Unwind, and Connect",
     category: "Luxury Amenities",
-    img: "/images/grooms-lodge.jpg",
+    img: "/images/grove/grooms-lodge.jpg",
     position: "object-center",
     description: "Tucked away to offer privacy, the Grooms Lodge is a premium retreat for the groom and groomsmen. Loaded with entertainment, games, and lounge options, it offers the ultimate space to relax and prepare for the big day.",
     highlights: [
@@ -114,7 +114,7 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "The Barn",
     tagline: "Rustic Grandeur and Modern Luxury",
     category: "Venue Features",
-    img: "/images/barn.jpg",
+    img: "/images/grove/barn.jpg",
     position: "object-center",
     description: "Our majestic 7,200 square foot climate-controlled barn is the central hub of The Grove at DeFoor Farm. Featuring a gorgeous limestone fireplace, high ceilings, custom lighting, and wide open-air options, it sets a premium stage for grand receptions and corporate retreats.",
     highlights: [
@@ -129,7 +129,7 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "The Lake",
     tagline: "Six Acres of Pristine Tranquility",
     category: "Venue Features",
-    img: "/images/lake.jpg",
+    img: "/images/grove/lake.jpg",
     position: "object-center",
     description: "Our scenic 6-acre lake serves as the beautiful backdrop for the entire property. Featuring two distinct docks—one covered and one with a custom wooden swing—the lake is surrounded by quiet seating areas and a gorgeous lit fountain that sparkles at night.",
     highlights: [

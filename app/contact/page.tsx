@@ -86,7 +86,7 @@ export default function ContactPage() {
             {/* Static Map Placeholder */}
             <div className="relative h-64 border border-bark/10 shadow-sm overflow-hidden bg-white">
               <img
-                src="https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-50.jpg"
+                src="/images/grove/The-Grove-at-Defoor-Farms_2500-50.jpg"
                 alt="Venue Location"
                 className="w-full h-full object-cover brightness-[0.55]"
               />

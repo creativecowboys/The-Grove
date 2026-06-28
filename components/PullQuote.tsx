@@ -9,7 +9,7 @@ export default function PullQuote() {
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <img
-          src="https://thegroveatdefoorfarm.com/wp-content/uploads/2024/10/The-Grove-at-Defoor-Farms_2500-50.jpg"
+          src="/images/grove/The-Grove-at-Defoor-Farms_2500-50.jpg"
           alt="The Grove at DeFoor Farm"
           className="w-full h-full object-cover object-center"
           style={{ filter: "brightness(0.35)" }}
