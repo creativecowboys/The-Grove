@@ -95,10 +95,10 @@ const spacesData: Record<string, SpaceDetails> = {
     position: "object-center",
     sideImg: "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
     sidePosition: "object-center",
-    description: "7,200 sq ft of conditioned or open air space overlooking the lake, with tables and chairs for up to 250 guests. This space also features a fireplace and TV.",
+    description: "7,200 sq ft of conditioned or open air space overlooking the lake, with tables and chairs for up to 200 guests. This space also features a fireplace and TV.",
     highlights: [
       "7,200 sq ft of conditioned or open air space overlooking the lake",
-      "Tables and chairs for up to 250 guests",
+      "Tables and chairs for up to 200 guests",
       "Features a fireplace and TV",
     ],
   },
