@@ -41,7 +41,7 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Luxury Amenities",
     img: "/images/grove/grooms-lodge-hero.jpg",
     position: "object-center",
-    sideImg: "/images/grove/grooms-lodge.jpg",
+    sideImg: "/images/grove/The-Grove-at-Defoor-Farms_2500-4Web.jpg",
     sidePosition: "object-center",
     description: "Our Grooms Lodge offers a private space with a living room, game room, pool table, shuffle board, and large screen tv. We are also equipped with a full bath and dressing room. Groomsmen also have access to our patio and pool area.",
     highlights: [
