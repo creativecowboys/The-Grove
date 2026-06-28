@@ -15,7 +15,7 @@ interface SpaceDetails {
   sideImg?: string;
   sidePosition?: string;
   description: string;
-  highlights: string[];
+  highlights?: string[];
   gallery?: string[];
   galleryPositions?: string[];
 }
@@ -27,13 +27,12 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Luxury Amenities",
     img: "/images/grove/bridal-suite.jpg",
     position: "object-center",
-    description: "Nestled within The Barn, our Bridal Suite is designed to offer comfort, luxury, and a perfect prep space for the bridal party. From professional makeup setups to a private kitchen and luxurious bath, every detail has been curated to make your wedding morning prep stress-free.",
+    description: "Our Bridal Suite is nestled within The Barn featuring three hair & make up vanities with a large open sitting area. The Bridal Suite is also equipped with a kitchen, coffee bar, microwave, refrigerator. Last, but not least, a luxurious bath with free standing tub, large tile shower, double vanity and water closet.",
     highlights: [
-      "Three professional hair & makeup vanities with custom mirror lighting",
-      "Large open lounge/sitting area with premium cream furniture and full-length mirrors",
-      "Full kitchen setup equipped with a coffee bar, microwave, sink, and refrigerator",
-      "Luxurious private master bathroom featuring a free-standing soaking tub, large tiled walk-in shower, double vanity, and water closet",
-      "Generous double-closet hanging spaces for bridal gowns and bridesmaid dresses",
+      "Three hair & make up vanities with a large open sitting area",
+      "Equipped with a kitchen, coffee bar, microwave, and refrigerator",
+      "Luxurious bath with free standing tub, large tile shower, double vanity, and water closet",
+      "Nestled within The Barn",
     ],
   },
   "grooms-lodge": {
@@ -42,31 +41,23 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Luxury Amenities",
     img: "/images/grove/grooms-lodge.jpg",
     position: "object-center",
-    description: "Tucked away to offer privacy, the Grooms Lodge is a premium retreat for the groom and groomsmen. Loaded with entertainment, games, and lounge options, it offers the ultimate space to relax and prepare for the big day.",
+    description: "Our Grooms Lodge offers a private space with a living room, game room, pool table, shuffle board, and large screen tv. We are also equipped with a full bath and dressing room. Groomsmen also have access to our patio and pool area.",
     highlights: [
-      "Private gaming room featuring a regulation pool table and shuffleboard table",
-      "Spacious living area with leather couches and a large screen smart TV",
-      "Full private bathroom and spacious dedicated dressing room",
-      "Direct access to the outdoor patio and swimming pool area",
-      "Stocked bar area with mini-fridge for refreshments and cold drinks",
+      "Private space with a living room and game room",
+      "Pool table, shuffle board, and large screen TV",
+      "Full bath and dressing room",
+      "Access to our patio and pool area",
     ],
   },
   "oaklin": {
-    name: "Oaklin Site",
+    name: "Oaklin",
     tagline: "Under the Canopy of the Aged Oak",
     category: "Ceremony Sites",
     img: "/images/Oaklin/TGDF-64_warm.png",
     position: "object-[center_60%]",
     sideImg: "/images/Oaklin/IMG_1978.JPG",
     sidePosition: "object-bottom",
-    description: "Named after our majestic century-old oak tree, the Oaklin ceremony site is a perfect place to unite in marriage. With its grand canopy and pastoral beauty, this site stands as a symbol of strength and long-lasting devotion.",
-    highlights: [
-      "Panoramic backdrop featuring the historic aged oak tree canopy",
-      "Lush, manicured grassy lawn with guest seating capacity for up to 200 guests",
-      "Symmetrical stone paving path for the bridal entrance walk",
-      "Surrounded by soft rolling hills and beautiful woodlands",
-      "Gorgeous golden-hour lighting filtering through the oak tree branches",
-    ],
+    description: "Settled under a beautiful aged oak tree, this wedding site is a perfect place to unite together in a marriage as strong and resilient as the oak itself.",
     gallery: [
       "/images/Oaklin/IMG_1978.JPG",
       "/images/Oaklin/IMG_1560-1.jpg",
@@ -81,34 +72,20 @@ const spacesData: Record<string, SpaceDetails> = {
     ],
   },
   "willow": {
-    name: "Willow Site",
+    name: "Willow",
     tagline: "Serenity by the Shore",
     category: "Ceremony Sites",
     img: "/images/willow.jpg",
     position: "object-[30%_98%]",
     description: 'This wedding site is settled directly beside the lake, edged in by a beautiful stone sea wall. The willow tree is full of symbolism such as hope and safety. Say "I do" at our Willow site, declaring to be a source of hope and safety for your life-long partner.',
-    highlights: [
-      "Waterfront ceremony setting framed by a weeping willow tree",
-      "Custom stone-paved sea wall and walkway along the lake",
-      "Exceptional view of the central lake fountain and docks",
-      "Waterfront breeze and tranquil environment",
-      "Seating space customizable up to 200 guests",
-    ],
   },
   "the-grove": {
-    name: "The Grove Site",
+    name: "The Grove",
     tagline: "Whispering Brooks and Shaded Glades",
     category: "Ceremony Sites",
     img: "/images/grove-site.jpg",
     position: "object-center",
-    description: "As one of our absolute favorite sites on the farm, The Grove is an enchanted clearing enveloped by mature, towering trees, a babbling brook with natural small waterfalls, and a clear vista of the lake. It is the ideal site for nature lovers.",
-    highlights: [
-      "Lush green clearing bordered by whispering brooks and small waterfalls",
-      "Unique woodland aesthetic with towering trees providing natural shade",
-      "Picturesque wooden bridge crossings for unique photo opportunities",
-      "Direct visual framing of the lake in the background",
-      "Romantic, quiet ambiance ideal for intimate vow exchanges",
-    ],
+    description: "Surrounded by large trees, a flowing brook with small waterfalls, and a view of the lake, The Grove is undoubtedly one of our favorite sites. We are sure it will become one of yours as well.",
   },
   "the-barn": {
     name: "The Barn",
@@ -116,13 +93,11 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Venue Features",
     img: "/images/grove/barn.jpg",
     position: "object-center",
-    description: "Our majestic 7,200 square foot climate-controlled barn is the central hub of The Grove at DeFoor Farm. Featuring a gorgeous limestone fireplace, high ceilings, custom lighting, and wide open-air options, it sets a premium stage for grand receptions and corporate retreats.",
+    description: "7,200 sq ft of conditioned or open air space overlooking the lake, with tables and chairs for up to 250 guests. This space also features a fireplace and TV.",
     highlights: [
-      "7,200 square feet of climate-controlled, open-concept event space",
-      "Accommodates tables and elegant cross-back chairs for up to 200 guests",
-      "Stately floor-to-ceiling stone fireplace and large flatscreen media capabilities",
-      "Large sliding barn doors that open to lake views and fresh breezes",
-      "Equipped with lighting rigs, sound hookups, and prep areas for vendors",
+      "7,200 sq ft of conditioned or open air space overlooking the lake",
+      "Tables and chairs for up to 250 guests",
+      "Features a fireplace and TV",
     ],
   },
   "the-lake": {
@@ -131,13 +106,12 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Venue Features",
     img: "/images/grove/lake.jpg",
     position: "object-center",
-    description: "Our scenic 6-acre lake serves as the beautiful backdrop for the entire property. Featuring two distinct docks—one covered and one with a custom wooden swing—the lake is surrounded by quiet seating areas and a gorgeous lit fountain that sparkles at night.",
+    description: "We have a beautiful 6 acre lake with two docks. The first dock features a covered seating area while the second dock features a swing. We also have several seating areas around the lake to view the beautiful lit fountain.",
     highlights: [
-      "6 acres of spring-fed lake water reflecting beautiful Georgia sunsets",
-      "Two custom wooden docks (one covered seating dock, one swings dock)",
-      "Lit central fountain creating a sparkling night backdrop",
-      "Scenic trails and gravel walking paths surrounding the shore",
-      "Ideal for golden-hour portraits, cocktail hour, and lakeside strolls",
+      "Beautiful 6 acre lake with two docks",
+      "The first dock features a covered seating area",
+      "The second dock features a swing",
+      "Several seating areas around the lake to view the beautiful lit fountain",
     ],
   },
 };
@@ -241,23 +215,25 @@ export default function SpacePage() {
                 </p>
               </div>
 
-              <div>
-                <span className="text-gold font-bold tracking-[0.2em] text-xs uppercase block mb-6">
-                  Key Amenities & Specs
-                </span>
-                <ul className="space-y-4">
-                  {space.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start gap-4">
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cream text-gold flex-shrink-0 mt-0.5">
-                        <Check className="w-3.5 h-3.5" />
-                      </span>
-                      <span className="text-bark/80 text-base leading-relaxed">
-                        {highlight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {space.highlights && space.highlights.length > 0 && (
+                <div>
+                  <span className="text-gold font-bold tracking-[0.2em] text-xs uppercase block mb-6">
+                    Key Amenities & Specs
+                  </span>
+                  <ul className="space-y-4">
+                    {space.highlights.map((highlight, index) => (
+                      <li key={index} className="flex items-start gap-4">
+                        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cream text-gold flex-shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5" />
+                        </span>
+                        <span className="text-bark/80 text-base leading-relaxed">
+                          {highlight}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* Right Column: Mini CTA Card & Image Detail (5 cols) */}
