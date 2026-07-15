@@ -97,14 +97,6 @@ export default function Hero() {
             Book Free Tour Now
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <a
-            href="https://www.youtube.com/watch?v=L3lOQTmOvv0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 border border-white/50 hover:border-gold text-white hover:text-gold text-sm font-bold tracking-widest uppercase px-8 py-4 transition-all duration-300 cursor-pointer"
-          >
-            Watch Video
-          </a>
         </motion.div>
       </div>
 
