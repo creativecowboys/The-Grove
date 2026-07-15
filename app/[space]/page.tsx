@@ -91,7 +91,7 @@ const spacesData: Record<string, SpaceDetails> = {
   },
   "the-barn": {
     name: "The Barn",
-    tagline: "Rustic Grandeur and Modern Luxury",
+    tagline: "Southern Charm and Modern Luxury",
     category: "Venue Features",
     img: "/images/grove/The-Grove-at-Defoor-Farms_2500-90.jpg",
     position: "object-center",

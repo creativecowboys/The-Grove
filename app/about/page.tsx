@@ -52,7 +52,7 @@ export default function AboutPage() {
             </p>
 
             <p className="mb-6">
-              Located in the heart of West Georgia, The Grove at DeFoor Farm is a premier family-owned event venue. Spanning acres of pristine, scenic landscape, our venue seamlessly blends rustic charm with modern luxury.
+              Located in the heart of West Georgia, The Grove at DeFoor Farm is a premier family-owned event venue. Spanning acres of pristine, scenic landscape, our venue seamlessly blends southern charm with modern luxury.
             </p>
 
             <p className="mb-6">
