@@ -48,7 +48,7 @@ export default function AboutPage() {
             className="prose prose-lg text-bark/80 leading-relaxed font-sans"
           >
             <p className="text-xl text-bark font-serif italic mb-8 border-l-4 border-gold pl-6 py-2 leading-relaxed">
-              "We built The Grove with a single vision: to create a breathtaking sanctuary where families, friends, and communities could gather to celebrate life's most beautiful moments."
+              "We built The Grove with a single vision: to create a special place where families, friends, and communities could gather to celebrate life's most beautiful moments."
             </p>
 
             <p className="mb-6">
@@ -56,7 +56,7 @@ export default function AboutPage() {
             </p>
 
             <p className="mb-6">
-              The farm itself has deep roots in the community. Originally a working pasture, the land was lovingly reimagined and transformed into a world-class events venue. The center of our property is a historic-inspired 7,200 square foot climate-controlled barn that features high ceilings, exposed beams, and a grand fireplace, all overlooking our peaceful 6-acre lake.
+              The farm itself has deep roots in the community. Originally a working pasture, the land was thoughtfully transformed into the venue it is today. At the center of the property is a 7,200 square foot climate-controlled barn with high ceilings, exposed beams, and a fireplace, all overlooking our peaceful 6-acre lake.
             </p>
 
             <div className="my-16">
@@ -71,7 +71,7 @@ export default function AboutPage() {
 
             <h3 className="font-serif text-3xl text-bark font-bold mt-12 mb-6">A Family Legacy</h3>
             <p className="mb-6">
-              As a family-owned and operated venue, hospitality is at the core of everything we do. We understand that planning a wedding, corporate retreat, or milestone milestone can feel overwhelming. That’s why we pride ourselves on offering personal, hands-on care. From your first private tour of the grounds to the final sweep of the dance floor, our team is dedicated to making your experience seamless and unforgettable.
+              As a family-owned and operated venue, hospitality is at the core of everything we do. We understand that planning a wedding, corporate retreat, or milestone celebration can feel overwhelming. That’s why we pride ourselves on offering personal, hands-on care. From your first private tour of the grounds to the final sweep of the dance floor, our team is dedicated to making your experience seamless and unforgettable.
             </p>
 
             <h3 className="font-serif text-3xl text-bark font-bold mt-12 mb-6">Spaces Designed for Connection</h3>
