@@ -17,9 +17,9 @@ const events = [
     description: "Whether you are hosting a fundraiser, revealing the next phase of your company, or simply celebrating your employees. We offer the perfect opportunity for team building, including areas for a cookout and relaxing. As well as fishing our fully stocked lake.",
   },
   {
-    title: "Graduations",
+    title: "Celebrations",
     img: "/images/Graduation.png",
-    description: "Is someone close to you wrapping up high school, college, or a special training? Let us help you celebrate their hard work!",
+    description: "From birthdays and anniversaries to graduations and reunions, The Grove is a beautiful place to gather the people you love and mark the moments that matter.",
   },
 ];
 
