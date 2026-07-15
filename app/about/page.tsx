@@ -62,8 +62,8 @@ export default function AboutPage() {
             <div className="my-16">
               <div className="relative h-80">
                 <img
-                  src="/images/Oaklin/IMG_1562-1.jpg"
-                  alt="The Oaklin ceremony site at DeFoor Farm"
+                  src="/images/grove/defoor-family-2026.jpg"
+                  alt="The DeFoor family at The Grove"
                   className="w-full h-full object-cover shadow-md"
                 />
               </div>
