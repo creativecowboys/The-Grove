@@ -9,7 +9,7 @@ const events = [
   {
     title: "Weddings",
     img: "/images/weddings.jpg",
-    description: "Your wedding day should be as special as the person you are choosing to spend the rest of your life with. With our 3 beautiful wedding sights, as well as grooms lodge and bridal suite, we have everything you need to make your special day perfect.",
+    description: "Your wedding day should be as special as the person you are choosing to spend the rest of your life with. With our 4 beautiful wedding sites, as well as grooms lodge and bridal suite, we have everything you need to make your special day perfect.",
   },
   {
     title: "Corporate Events",

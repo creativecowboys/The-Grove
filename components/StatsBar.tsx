@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const stats = [
   { value: "200", label: "Guest Capacity" },
   { value: "6", label: "Acre Lake" },
-  { value: "3", label: "Wedding Sites" },
+  { value: "4", label: "Wedding Sites" },
   { value: "7,200", label: "Sq Ft Barn" },
 ];
 
