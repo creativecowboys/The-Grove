@@ -8,7 +8,7 @@ const features = [
   {
     title: "The Barn",
     slug: "the-barn",
-    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-90.jpg",
+    img: "/images/grove/barn-drone-dusk.jpg",
     description: "7,200 sq ft of conditioned or open air space overlooking the lake, with tables and chairs for up to 200 guests. This space also features a fireplace and TV.",
     detail: "Up to 200 Guests · 7,200 Sq Ft · Fireplace & TV",
   },
