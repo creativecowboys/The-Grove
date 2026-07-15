@@ -16,11 +16,6 @@ const events = [
     img: "/images/grove/cigar-bar-sunset.jpg",
     description: "Whether you are hosting a fundraiser, revealing the next phase of your company, or simply celebrating your employees. We offer the perfect opportunity for team building, including areas for a cookout and relaxing. As well as fishing our fully stocked lake.",
   },
-  {
-    title: "Celebrations",
-    img: "/images/Graduation.png",
-    description: "From birthdays and anniversaries to graduations and reunions, The Grove is a beautiful place to gather the people you love and mark the moments that matter.",
-  },
 ];
 
 export default function EventTypes() {
@@ -43,7 +38,7 @@ export default function EventTypes() {
         </motion.div>
 
         {/* Editorial portrait cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {events.map((event, idx) => (
             <motion.div
               key={event.title}
