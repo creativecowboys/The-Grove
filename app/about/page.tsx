@@ -47,8 +47,16 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="prose prose-lg text-bark/80 leading-relaxed font-sans"
           >
+            <p className="text-xl text-bark font-serif italic mb-8 border-l-4 border-gold pl-6 py-2 leading-relaxed">
+              "We built The Grove with a single vision: to create a special place where families, friends, and communities could gather to celebrate life's most beautiful moments."
+            </p>
+
             <p className="mb-6">
-              We built The Grove with a single vision: to create a special place where families, friends, and communities could gather to celebrate life's most beautiful moments. Located in the heart of West Georgia, The Grove at DeFoor Farm is a premier family-owned event venue. Spanning acres of pristine, scenic landscape, our venue seamlessly blends southern charm with modern luxury. The farm itself has deep roots in the community. Originally a working pasture, the land was thoughtfully transformed into the venue it is today. At the center of the property is a 7,200 square foot climate-controlled barn with high ceilings, exposed beams, and a fireplace, all overlooking our peaceful 6-acre lake.
+              Located in the heart of West Georgia, The Grove at DeFoor Farm is a premier family-owned event venue. Spanning acres of pristine, scenic landscape, our venue seamlessly blends southern charm with modern luxury.
+            </p>
+
+            <p className="mb-6">
+              The farm itself has deep roots in the community. Originally a working pasture, the land was thoughtfully transformed into the venue it is today. At the center of the property is a 7,200 square foot climate-controlled barn with high ceilings, exposed beams, and a fireplace, all overlooking our peaceful 6-acre lake.
             </p>
 
             <div className="my-16">
