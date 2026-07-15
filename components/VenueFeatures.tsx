@@ -34,7 +34,7 @@ export default function VenueFeatures() {
           <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4">Wedding Sites</p>
           <h2 className="font-serif text-4xl lg:text-5xl text-bark">
             Our Venue Features<br />
-            <em>3 Unique Wedding Sites</em>
+            <em>4 Unique Wedding Sites</em>
           </h2>
           <div className="w-16 h-px bg-gold mx-auto mt-6" />
         </motion.div>

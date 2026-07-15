@@ -42,17 +42,17 @@ export default function WeddingSites() {
           <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4">Wedding Sites</p>
           <h2 className="font-serif text-4xl lg:text-5xl text-white mb-4">
             Our Venue Features<br />
-            <em className="text-gold">3 Unique Wedding Sites</em>
+            <em className="text-gold">4 Unique Wedding Sites</em>
           </h2>
 
           {/* Site names */}
           <div className="flex items-center justify-center gap-4 mt-8">
-            {sites.map((site, idx) => (
-              <React.Fragment key={site.name}>
+            {[...sites.map((site) => site.name), "Chapel"].map((name, idx, names) => (
+              <React.Fragment key={name}>
                 <span className="tracking-widest text-sm uppercase font-bold text-white/40">
-                  {site.name}
+                  {name}
                 </span>
-                {idx < sites.length - 1 && <span className="text-white/20">·</span>}
+                {idx < names.length - 1 && <span className="text-white/20">·</span>}
               </React.Fragment>
             ))}
           </div>
