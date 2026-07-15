@@ -81,17 +81,12 @@ export default function IntroSection() {
                 className="font-serif font-bold text-bark float-left mr-2"
                 style={{ fontSize: "4.5rem", lineHeight: "0.82", marginTop: "4px" }}
               >
-                N
+                T
               </span>
-              estled in the countryside of West Georgia, The Grove at DeFoor Farm is a welcoming
-              setting for weddings and corporate events — a premier venue where southern charm
-              meets modern polish. With four distinct wedding sites set among the trees, the
-              property offers a beautiful backdrop for exchanging vows. At the heart of it all is a
-              7,200 square foot barn, a beautifully finished space made for receptions and
-              corporate gatherings alike. A quiet 6-acre lake with two docks rounds out the
-              grounds, offering a peaceful spot for guests and a favorite setting for photos.
-              Whether you&apos;re planning a wedding or a corporate event, The Grove is ready to
-              host it.
+              he Grove at DeFoor Farm blends modern amenities with the natural beauty of West
+              Georgia, creating a versatile destination for weddings, corporate events, and private
+              celebrations. The property features four unique ceremony locations surrounded by
+              mature trees, offering memorable settings for every style of event.
             </p>
 
             {/* CTAs */}
