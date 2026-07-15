@@ -35,8 +35,8 @@ export default function ContactPage() {
                 <div>
                   <h3 className="text-xs font-bold tracking-widest uppercase text-bark/50 mb-1">Location</h3>
                   <p className="text-bark/85 text-sm leading-relaxed">
-                    123 DeFoor Farm Road<br />
-                    Carrollton, GA 30117
+                    844 McBrayer Road<br />
+                    Temple, GA 30179
                   </p>
                 </div>
               </div>
@@ -48,8 +48,8 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <h3 className="text-xs font-bold tracking-widest uppercase text-bark/50 mb-1">Phone</h3>
-                  <a href="tel:7705550199" className="text-bark/85 text-sm hover:text-gold transition-colors">
-                    (770) 555-0199
+                  <a href="tel:4043046680" className="text-bark/85 text-sm hover:text-gold transition-colors">
+                    (404) 304-6680
                   </a>
                 </div>
               </div>
@@ -61,8 +61,8 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <h3 className="text-xs font-bold tracking-widest uppercase text-bark/50 mb-1">Email</h3>
-                  <a href="mailto:info@defoorfarm.com" className="text-bark/85 text-sm hover:text-gold transition-colors">
-                    info@defoorfarm.com
+                  <a href="mailto:info@thegroveatdefoorfarm.com" className="text-bark/85 text-sm hover:text-gold transition-colors">
+                    info@thegroveatdefoorfarm.com
                   </a>
                 </div>
               </div>
@@ -75,9 +75,8 @@ export default function ContactPage() {
                 <div>
                   <h3 className="text-xs font-bold tracking-widest uppercase text-bark/50 mb-1">Tour Hours</h3>
                   <p className="text-bark/85 text-sm leading-relaxed">
-                    Tues - Sat: 9:00 AM - 5:00 PM<br />
-                    Sunday: By Appointment Only<br />
-                    Monday: Closed
+                    Mon - Fri: 9:00 AM - 5:00 PM<br />
+                    Sat & Sun: By Appointment Only
                   </p>
                 </div>
               </div>
@@ -92,7 +91,7 @@ export default function ContactPage() {
               />
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6 text-white bg-black/30">
                 <MapPin className="w-8 h-8 text-gold mb-3 animate-bounce" />
-                <h3 className="font-serif text-xl font-bold mb-1">Find Us In Carrollton</h3>
+                <h3 className="font-serif text-xl font-bold mb-1">Find Us In Temple</h3>
                 <p className="text-xs text-white/75 max-w-xs leading-relaxed">
                   Located in scenic West Georgia, just an hour drive from Atlanta.
                 </p>

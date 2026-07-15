@@ -198,6 +198,7 @@ export default function ContactForm() {
           <option value="search">Google Search</option>
           <option value="referral">Friend / Family Referral</option>
           <option value="vendor">Wedding Vendor Recommendation</option>
+          <option value="zola">Zola</option>
           <option value="other">Other</option>
         </select>
       </div>
