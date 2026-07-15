@@ -9,6 +9,7 @@
 
   --font-serif: var(--font-serif), Georgia, serif;
   --font-sans: var(--font-sans), sans-serif;
+  --font-script: var(--font-great-vibes), cursive;
 }
 
 body {

@@ -15,6 +15,8 @@ interface SpaceDetails {
   sideImg?: string;
   sidePosition?: string;
   description: string;
+  aboutHeading?: string;
+  scriptTagline?: string;
   highlights?: string[];
   gallery?: string[];
   galleryPositions?: string[];
@@ -59,7 +61,9 @@ const spacesData: Record<string, SpaceDetails> = {
     position: "object-[center_60%]",
     sideImg: "/images/Oaklin/IMG_1978.JPG",
     sidePosition: "object-bottom",
-    description: "Settled under a beautiful aged oak tree, this wedding site is a perfect place to unite together in a marriage as strong and resilient as the oak itself.",
+    description: "Oaklin sits beneath a large, aged oak tree overlooking the lake. The oak's wide canopy frames the ceremony while the water stretches out beyond it, and the site comfortably accommodates up to 200 guests. It's a natural, established setting that needs little added to it.",
+    aboutHeading: "About Oaklin",
+    scriptTagline: "Strong and resilient, like the oak itself",
     gallery: [
       "/images/Oaklin/IMG_1978.JPG",
       "/images/Oaklin/IMG_1560-1.jpg",
@@ -213,8 +217,13 @@ export default function SpacePage() {
                   Overview
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl text-bark font-bold mb-6">
-                  About the Space
+                  {space.aboutHeading || "About the Space"}
                 </h2>
+                {space.scriptTagline && (
+                  <p className="font-script text-3xl sm:text-4xl text-gold -mt-3 mb-6">
+                    {space.scriptTagline}
+                  </p>
+                )}
                 <div className="w-12 h-px bg-gold mb-6" />
                 <p className="text-bark/85 leading-relaxed text-lg" style={{ textAlign: "justify" }}>
                   {space.description}

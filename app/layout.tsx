@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Lato } from "next/font/google";
+import { Cormorant_Garamond, Great_Vibes, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -18,6 +18,12 @@ const lato = Lato({
   weight: ["300", "400", "700"],
 });
 
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "The Grove at DeFoor Farm | West Georgia's Premiere Event Venue",
   description: "The Grove at DeFoor Farm — Where Shared Memories Are Made. Beautiful weddings, corporate retreats, and social events in West Georgia.",
@@ -34,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${lato.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${lato.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white">
         <ScrollToTop />
