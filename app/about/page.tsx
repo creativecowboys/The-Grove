@@ -52,7 +52,7 @@ export default function AboutPage() {
             </p>
 
             <p className="mb-6">
-              Located in the heart of West Georgia, The Grove at DeFoor Farm is a premier family-owned event venue. Spanning acres of pristine, scenic landscape, our venue seamlessly blends southern charm with modern luxury. The farm itself has deep roots in the community. Originally a working pasture, the land was thoughtfully transformed into the venue it is today. At the center of the property is a 7,200 square foot climate-controlled barn with high ceilings, exposed beams, and a fireplace, all overlooking our peaceful 6-acre lake.
+              Located in the heart of West Georgia, The Grove at DeFoor Farm is a premier family-owned event venue. Set on acres of rolling countryside, our venue seamlessly blends southern charm with modern luxury. The farm itself has deep roots in the community. Originally a working pasture, the land was thoughtfully transformed into the venue it is today. At the center of the property is a 7,200 square foot climate-controlled barn with high ceilings, exposed beams, and a fireplace, all overlooking our peaceful 6-acre lake.
             </p>
 
             <div className="my-16">
