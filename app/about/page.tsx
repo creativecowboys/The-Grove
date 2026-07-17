@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import VenueGallery from "@/components/VenueGallery";
 
 export default function AboutPage() {
   return (
@@ -74,6 +75,23 @@ export default function AboutPage() {
             <p className="mb-10">
               Whether you are exchanging vows beneath our grand Oaklin tree, hosting a sunset cocktail hour on the Willow lakefront dock, or dancing the night away in The Barn, each space at DeFoor Farm has been purposefully designed to inspire joy, laughter, and lifelong memories.
             </p>
+          </motion.div>
+
+          {/* ── Gallery ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-20 border-t border-bark/10 pt-16"
+          >
+            <div className="text-center mb-12">
+              <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4">Visual Tour</p>
+              <h2 className="font-serif text-3xl sm:text-4xl text-bark mb-4">
+                The Venue <em className="text-gold">Gallery</em>
+              </h2>
+              <div className="w-16 h-px bg-gold mx-auto mt-6" />
+            </div>
+            <VenueGallery />
           </motion.div>
 
           {/* ── Call to Action ── */}

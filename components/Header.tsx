@@ -8,12 +8,12 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Gallery", href: "/gallery" },
   { label: "Bridal Suite", href: "/bridal-suite" },
   { label: "Grooms Lodge", href: "/grooms-lodge" },
   { label: "Oaklin", href: "/oaklin" },
   { label: "Willow", href: "/willow" },
   { label: "The Grove", href: "/the-grove" },
+  { label: "Chapel", href: "/chapel" },
   { label: "The Barn", href: "/the-barn" },
   { label: "The Lake", href: "/the-lake" },
   { label: "Contact", href: "/contact" },

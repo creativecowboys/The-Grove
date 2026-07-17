@@ -99,6 +99,16 @@ const spacesData: Record<string, SpaceDetails> = {
     imageLeft: true,
     description: "Surrounded by large trees, a flowing brook with small waterfalls, and a view of the lake, The Grove is undoubtedly one of our favorite sites. We are sure it will become one of yours as well.",
   },
+  "chapel": {
+    name: "The Chapel",
+    tagline: "An Open-Air Sanctuary",
+    category: "Ceremony Sites",
+    img: "/images/grove/chapel-benches.jpg",
+    position: "object-center",
+    aboutHeading: "About the Chapel",
+    imageLeft: true,
+    description: "Our open-air chapel offers a covered ceremony space with handcrafted wooden benches, chandelier lighting, and flowing white drapes, framed by sliding barn doors with a view of the grounds. Rain or shine, it's a beautiful place to gather for the moment that matters most.",
+  },
   "the-barn": {
     name: "The Barn",
     tagline: "Southern Charm and Modern Luxury",
