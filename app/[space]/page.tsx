@@ -13,6 +13,7 @@ interface SpaceDetails {
   img: string;
   position?: string;
   sideImg?: string;
+  sideImages?: string[];
   sidePosition?: string;
   description: string;
   aboutHeading?: string;
@@ -103,6 +104,13 @@ const spacesData: Record<string, SpaceDetails> = {
     img: "/images/grove/The-Grove-at-Defoor-Farms_2500-90.jpg",
     position: "object-center",
     sideImg: "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
+    sideImages: [
+      "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
+      "/images/grove/barn-reception-pampas.jpg",
+      "/images/grove/barn-tables-brick.jpg",
+      "/images/grove/barn-patio-fountain.jpg",
+      "/images/grove/barn-patio-lights.jpg",
+    ],
     sidePosition: "object-center",
     aboutHeading: "About the Barn",
     imageLeft: true,
@@ -128,6 +136,19 @@ export default function SpacePage() {
   const space = spacesData[slug];
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const sideImages =
+    space?.sideImages && space.sideImages.length > 0 ? space.sideImages : null;
+  const [sideIdx, setSideIdx] = useState(0);
+
+  useEffect(() => {
+    if (!sideImages || sideImages.length < 2) return;
+    const timer = setInterval(
+      () => setSideIdx((i) => (i + 1) % sideImages.length),
+      6000
+    );
+    return () => clearInterval(timer);
+  }, [sideImages]);
 
   useEffect(() => {
     if (lightboxIndex === null || !space?.gallery) return;
@@ -269,14 +290,55 @@ export default function SpacePage() {
 
             {/* Image Column: Detail Image & Mini CTA Card */}
             <div className={`space-y-8 ${space.imageLeft ? "lg:col-span-7 lg:order-1" : "lg:col-span-5 lg:sticky lg:top-36"}`}>
-              {/* Secondary Details Image */}
+              {/* Secondary Details Image / Carousel */}
               <div className="relative border border-bark/10 shadow-sm overflow-hidden">
-                <img
-                  src={space.sideImg || space.img}
-                  alt={`${space.name} Detail`}
-                  className={`w-full object-cover ${space.imageLeft ? "h-96 lg:h-[560px]" : "h-80"} ${space.sidePosition || space.position || "object-center"}`}
-                />
+                <div className={`relative ${space.imageLeft ? "h-96 lg:h-[560px]" : "h-80"}`}>
+                  {(sideImages || [space.sideImg || space.img]).map((src, i) => (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={`${space.name} Detail ${i + 1}`}
+                      style={{ opacity: i === (sideImages ? sideIdx % sideImages.length : 0) ? 1 : 0 }}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                        sideImages ? "object-center" : space.sidePosition || space.position || "object-center"
+                      }`}
+                    />
+                  ))}
+                </div>
                 <div className="absolute inset-0 border border-gold/15 m-3 pointer-events-none" />
+
+                {sideImages && sideImages.length > 1 && (
+                  <>
+                    <button
+                      aria-label="Previous photo"
+                      onClick={() =>
+                        setSideIdx((i) => (i - 1 + sideImages.length) % sideImages.length)
+                      }
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/35 hover:bg-black/55 text-white rounded-full transition-colors cursor-pointer"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      aria-label="Next photo"
+                      onClick={() => setSideIdx((i) => (i + 1) % sideImages.length)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/35 hover:bg-black/55 text-white rounded-full transition-colors cursor-pointer"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                      {sideImages.map((_, i) => (
+                        <button
+                          key={i}
+                          aria-label={`Photo ${i + 1}`}
+                          onClick={() => setSideIdx(i)}
+                          className={`w-2 h-2 rounded-full transition-colors cursor-pointer ${
+                            i === sideIdx % sideImages.length ? "bg-white" : "bg-white/40"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Booking/Inquiry Prompt (in-column on default layout; below image on mobile for image-left layout) */}
