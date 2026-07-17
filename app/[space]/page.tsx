@@ -171,6 +171,24 @@ export default function SpacePage() {
     }
   };
 
+  const inquiryCard = (
+    <div className="bg-cream border border-bark/10 p-8 shadow-sm">
+      <h3 className="font-serif text-2xl text-bark font-bold mb-2">
+        Interested in {space.name}?
+      </h3>
+      <p className="text-taupe text-sm leading-relaxed mb-6">
+        Schedule a private tour to walk through the grounds and see this space in person.
+      </p>
+      <Link
+        href="/contact"
+        className="group w-full inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-dark text-white text-sm font-bold tracking-widest uppercase py-4 transition-all duration-300 shadow-md shadow-gold/10"
+      >
+        Book Private Tour
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      </Link>
+    </div>
+  );
+
   return (
     <div className="bg-cream min-h-screen">
       {/* ── Header Banner ── */}
@@ -229,6 +247,8 @@ export default function SpacePage() {
                 </p>
               </div>
 
+              {space.imageLeft && inquiryCard}
+
               {space.highlights && space.highlights.length > 0 && (
                 <div>
                   <span className="text-gold font-bold tracking-[0.2em] text-xs uppercase block mb-6">
@@ -263,21 +283,7 @@ export default function SpacePage() {
               </div>
 
               {/* Booking/Inquiry Prompt */}
-              <div className="bg-cream border border-bark/10 p-8 shadow-sm">
-                <h3 className="font-serif text-2xl text-bark font-bold mb-2">
-                  Interested in {space.name}?
-                </h3>
-                <p className="text-taupe text-sm leading-relaxed mb-6">
-                  Schedule a private tour to walk through the grounds and see this space in person.
-                </p>
-                <Link
-                  href="/contact"
-                  className="group w-full inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-dark text-white text-sm font-bold tracking-widest uppercase py-4 transition-all duration-300 shadow-md shadow-gold/10"
-                >
-                  Book Private Tour
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+              {!space.imageLeft && inquiryCard}
             </div>
           </div>
         </div>
