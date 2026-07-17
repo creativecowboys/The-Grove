@@ -95,6 +95,8 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Ceremony Sites",
     img: "/images/grove-site.jpg",
     position: "object-center",
+    aboutHeading: "About The Grove",
+    imageLeft: true,
     description: "Surrounded by large trees, a flowing brook with small waterfalls, and a view of the lake, The Grove is undoubtedly one of our favorite sites. We are sure it will become one of yours as well.",
   },
   "the-barn": {
