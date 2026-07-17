@@ -17,6 +17,7 @@ interface SpaceDetails {
   description: string;
   aboutHeading?: string;
   scriptTagline?: string;
+  imageLeft?: boolean;
   highlights?: string[];
   gallery?: string[];
   galleryPositions?: string[];
@@ -118,13 +119,9 @@ const spacesData: Record<string, SpaceDetails> = {
     position: "object-center",
     sideImg: "/images/grove/lake-chairs-firepit.jpg",
     sidePosition: "object-center",
+    aboutHeading: "About the Lake",
+    imageLeft: true,
     description: "We have a beautiful 6 acre lake with two docks. The first dock features a covered seating area while the second dock features a swing. We also have several seating areas around the lake to view the beautiful lit fountain.",
-    highlights: [
-      "Beautiful 6 acre lake with two docks",
-      "The first dock features a covered seating area",
-      "The second dock features a swing",
-      "Several seating areas around the lake to view the beautiful lit fountain",
-    ],
   },
 };
 
@@ -212,8 +209,8 @@ export default function SpacePage() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            {/* Left Column: Description & Highlights (7 cols) */}
-            <div className="lg:col-span-7 space-y-10">
+            {/* Text Column: Description & Highlights */}
+            <div className={`space-y-10 ${space.imageLeft ? "lg:col-span-5 lg:order-2" : "lg:col-span-7"}`}>
               <div>
                 <span className="text-gold font-bold tracking-[0.2em] text-xs uppercase block mb-3">
                   Overview
@@ -253,14 +250,14 @@ export default function SpacePage() {
               )}
             </div>
 
-            {/* Right Column: Mini CTA Card & Image Detail (5 cols) */}
-            <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-36">
+            {/* Image Column: Detail Image & Mini CTA Card */}
+            <div className={`space-y-8 ${space.imageLeft ? "lg:col-span-7 lg:order-1" : "lg:col-span-5 lg:sticky lg:top-36"}`}>
               {/* Secondary Details Image */}
               <div className="relative border border-bark/10 shadow-sm overflow-hidden">
                 <img
                   src={space.sideImg || space.img}
                   alt={`${space.name} Detail`}
-                  className={`w-full h-80 object-cover ${space.sidePosition || space.position || "object-center"}`}
+                  className={`w-full object-cover ${space.imageLeft ? "h-96 lg:h-[560px]" : "h-80"} ${space.sidePosition || space.position || "object-center"}`}
                 />
                 <div className="absolute inset-0 border border-gold/15 m-3 pointer-events-none" />
               </div>
