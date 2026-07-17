@@ -38,7 +38,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-6"
+          className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-3"
         >
           West Georgia's Premiere Event Venue
         </motion.p>
@@ -48,7 +48,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
-          className="font-serif text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-4 text-shadow"
+          className="font-serif text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.02] mb-3 text-shadow"
         >
           The Grove
           <br />
@@ -60,7 +60,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-white/80 tracking-[0.25em] text-sm uppercase mb-3"
+          className="text-white/80 tracking-[0.25em] text-sm uppercase mb-2"
         >
           Where Shared Memories Are Made
         </motion.p>
@@ -70,7 +70,7 @@ export default function Hero() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.45 }}
-          className="w-24 h-px bg-gold mx-auto my-6"
+          className="w-24 h-px bg-gold mx-auto my-4"
         />
 
         {/* Event types */}
@@ -78,7 +78,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="text-white/60 tracking-[0.2em] text-xs uppercase mb-10"
+          className="text-white/60 tracking-[0.2em] text-xs uppercase mb-7"
         >
           Weddings &nbsp;·&nbsp; Corporate &nbsp;·&nbsp; Photo Shoots
         </motion.p>
