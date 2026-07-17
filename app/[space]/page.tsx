@@ -116,7 +116,7 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Venue Features",
     img: "/images/across-the-lake.jpg",
     position: "object-center",
-    sideImg: "/images/grove/lake.jpg",
+    sideImg: "/images/grove/lake-chairs-firepit.jpg",
     sidePosition: "object-center",
     description: "We have a beautiful 6 acre lake with two docks. The first dock features a covered seating area while the second dock features a swing. We also have several seating areas around the lake to view the beautiful lit fountain.",
     highlights: [
