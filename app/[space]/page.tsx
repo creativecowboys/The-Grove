@@ -104,12 +104,9 @@ const spacesData: Record<string, SpaceDetails> = {
     position: "object-center",
     sideImg: "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
     sidePosition: "object-center",
-    description: "7,200 sq ft of conditioned or open air space overlooking the lake, with tables and chairs for up to 200 guests. This space also features a fireplace and TV.",
-    highlights: [
-      "7,200 sq ft of conditioned or open air space overlooking the lake",
-      "Tables and chairs for up to 200 guests",
-      "Features a fireplace and TV",
-    ],
+    aboutHeading: "About the Barn",
+    imageLeft: true,
+    description: "The Barn offers 7,200 square feet of conditioned or open-air space overlooking the lake, with tables and chairs for up to 200 guests. The space also features a fireplace and TV.",
   },
   "the-lake": {
     name: "The Lake",
@@ -247,7 +244,7 @@ export default function SpacePage() {
                 </p>
               </div>
 
-              {space.imageLeft && inquiryCard}
+              {space.imageLeft && <div className="hidden lg:block">{inquiryCard}</div>}
 
               {space.highlights && space.highlights.length > 0 && (
                 <div>
@@ -282,8 +279,8 @@ export default function SpacePage() {
                 <div className="absolute inset-0 border border-gold/15 m-3 pointer-events-none" />
               </div>
 
-              {/* Booking/Inquiry Prompt */}
-              {!space.imageLeft && inquiryCard}
+              {/* Booking/Inquiry Prompt (in-column on default layout; below image on mobile for image-left layout) */}
+              {!space.imageLeft ? inquiryCard : <div className="lg:hidden">{inquiryCard}</div>}
             </div>
           </div>
         </div>
