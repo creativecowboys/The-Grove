@@ -110,6 +110,8 @@ const spacesData: Record<string, SpaceDetails> = {
       "/images/grove/barn-tables-brick.jpg",
       "/images/grove/barn-patio-fountain.jpg",
       "/images/grove/barn-patio-lights.jpg",
+      "/images/grove/barn-across-lake-flowers.jpg",
+      "/images/grove/barn-night-party.jpg",
     ],
     sidePosition: "object-center",
     aboutHeading: "About the Barn",
