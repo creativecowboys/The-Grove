@@ -52,7 +52,7 @@ export default function Footer() {
             <img
               src="/images/grove/creative-cowboys-white.png"
               alt="Creative Cowboys"
-              className="h-9 w-auto"
+              className="h-12 w-auto"
             />
           </a>
         </div>
