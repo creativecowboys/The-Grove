@@ -26,6 +26,13 @@ const sites = [
     position: "object-center",
     description: "Surrounded by large trees, a flowing brook with small waterfalls, and a view of the lake, The Grove is undoubtedly one of our favorite sites. We are sure it will become one of yours as well.",
   },
+  {
+    name: "Chapel",
+    slug: "chapel",
+    img: "/images/grove/chapel-ceremony-wide.jpg",
+    position: "object-center",
+    description: "Our open-air chapel offers a covered ceremony space with handcrafted wooden benches, chandelier lighting, and a brick wall backdrop. Rain or shine, it's a beautiful place to gather for the moment that matters most.",
+  },
 ];
 
 export default function WeddingSites() {
@@ -47,10 +54,10 @@ export default function WeddingSites() {
 
           {/* Site names */}
           <div className="flex items-center justify-center gap-4 mt-8">
-            {[...sites.map((site) => site.name), "Chapel"].map((name, idx, names) => (
-              <React.Fragment key={name}>
+            {sites.map((site, idx, names) => (
+              <React.Fragment key={site.slug}>
                 <span className="tracking-widest text-sm uppercase font-bold text-white/40">
-                  {name}
+                  {site.name}
                 </span>
                 {idx < names.length - 1 && <span className="text-white/20">·</span>}
               </React.Fragment>

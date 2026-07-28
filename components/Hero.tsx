@@ -38,7 +38,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-3"
+          className="text-gold tracking-[0.18em] text-xs font-bold uppercase mb-2"
         >
           West Georgia's Premiere Event Venue
         </motion.p>
@@ -61,7 +61,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-white/80 tracking-[0.25em] text-sm uppercase mb-2"
+          className="text-white/80 tracking-[0.15em] text-sm uppercase mb-2"
         >
           Where Shared Memories Are Made
         </motion.p>
@@ -79,7 +79,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="text-white/60 tracking-[0.2em] text-xs uppercase mb-6"
+          className="text-white/60 tracking-[0.13em] text-xs uppercase mb-5"
         >
           Weddings &nbsp;·&nbsp; Corporate &nbsp;·&nbsp; Photo Shoots
         </motion.p>
