@@ -94,18 +94,7 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
   const pipelineId = process.env.GHL_PIPELINE_ID;
 
   if (!token || !locationId || !pipelineId) {
-    // Diagnostic: report presence/shape only — never the secret values.
-    console.warn(
-      "GHL not configured — skipping opportunity creation.",
-      JSON.stringify({
-        tokenPresent: !!token,
-        tokenLength: token ? token.length : 0,
-        tokenPrefix: token ? token.slice(0, 4) : null,
-        locationIdPresent: !!locationId,
-        pipelineIdPresent: !!pipelineId,
-        ghlKeysSeen: Object.keys(process.env).filter((k) => k.startsWith("GHL_")),
-      })
-    );
+    console.warn("GHL not configured — skipping opportunity creation.");
     return { ok: false, reason: "not_configured" };
   }
 
@@ -322,12 +311,5 @@ export async function POST(request: Request) {
     );
   }
 
-  return Response.json({
-    ok: true,
-    email: email.ok,
-    ghl: ghl.ok,
-    // Temporary diagnostic — remove once GHL is confirmed working.
-    ghlReason: ghl.ok ? null : ghl.reason,
-    ghlDetail: ghl.ok ? null : (ghl as { detail?: string }).detail || null,
-  });
+  return Response.json({ ok: true, email: email.ok, ghl: ghl.ok });
 }
