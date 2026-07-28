@@ -186,7 +186,11 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
     const oj = await or.json().catch(() => ({}));
     if (!or.ok) {
       console.error("GHL opportunity create failed:", or.status, JSON.stringify(oj));
-      return { ok: false, reason: "opportunity_failed" };
+      return {
+        ok: false,
+        reason: "opportunity_failed",
+        detail: `${or.status}: ${JSON.stringify(oj).slice(0, 300)}`,
+      };
     }
   } catch (e) {
     console.error("GHL opportunity create error:", e);
@@ -310,5 +314,6 @@ export async function POST(request: Request) {
     ghl: ghl.ok,
     // Temporary diagnostic — remove once GHL is confirmed working.
     ghlReason: ghl.ok ? null : ghl.reason,
+    ghlDetail: ghl.ok ? null : (ghl as { detail?: string }).detail || null,
   });
 }
