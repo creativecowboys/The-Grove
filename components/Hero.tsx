@@ -48,11 +48,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
-          className="font-serif text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.02] mb-3 text-shadow"
+          className="font-serif text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.02] mb-2 text-shadow"
         >
           The Grove
-          <br />
-          <span className="italic font-normal text-4xl sm:text-5xl lg:text-6xl">at DeFoor Farm</span>
+          <span className="block italic font-normal text-4xl sm:text-5xl lg:text-6xl leading-none mt-1">
+            at DeFoor Farm
+          </span>
         </motion.h1>
 
         {/* Tagline */}
@@ -70,7 +71,7 @@ export default function Hero() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.45 }}
-          className="w-24 h-px bg-gold mx-auto my-4"
+          className="w-24 h-px bg-gold mx-auto my-3"
         />
 
         {/* Event types */}
@@ -78,7 +79,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.55 }}
-          className="text-white/60 tracking-[0.2em] text-xs uppercase mb-7"
+          className="text-white/60 tracking-[0.2em] text-xs uppercase mb-6"
         >
           Weddings &nbsp;·&nbsp; Corporate &nbsp;·&nbsp; Photo Shoots
         </motion.p>
