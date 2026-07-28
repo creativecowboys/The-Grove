@@ -16,6 +16,7 @@ interface SpaceDetails {
   sideImages?: string[];
   sideImagePositions?: string[];
   photoCredit?: string;
+  sideImageCredits?: (string | undefined)[];
   sidePosition?: string;
   description: string;
   aboutHeading?: string;
@@ -117,6 +118,13 @@ const spacesData: Record<string, SpaceDetails> = {
     aboutHeading: "About the Chapel",
     imageLeft: true,
     photoCredit: "Brittany Sloan",
+    sideImageCredits: [
+      "Brittany Sloan", // chapel-ceremony-wide
+      "Hannah Langford", // chapel-ceremony-cross
+      "Brittany Sloan", // chapel-processional
+      "Brittany Sloan", // chapel-doors-entrance
+      "Brittany Sloan", // chapel-doors-closed
+    ],
     description: "Our open-air chapel offers a covered ceremony space with handcrafted wooden benches, chandelier lighting, and flowing white drapes, framed by sliding barn doors with a view of the grounds. Rain or shine, it's a beautiful place to gather for the moment that matters most.",
     sideImages: [
       "/images/grove/chapel-ceremony-wide.jpg",
@@ -173,6 +181,11 @@ export default function SpacePage() {
   const sideImages =
     space?.sideImages && space.sideImages.length > 0 ? space.sideImages : null;
   const [sideIdx, setSideIdx] = useState(0);
+
+  // Credit follows the visible slide, falling back to a page-wide credit
+  const activeCredit = sideImages
+    ? space?.sideImageCredits?.[sideIdx % sideImages.length] ?? space?.photoCredit
+    : space?.photoCredit;
 
   useEffect(() => {
     if (!sideImages || sideImages.length < 2) return;
@@ -376,9 +389,9 @@ export default function SpacePage() {
                 )}
               </div>
 
-              {space.photoCredit && (
+              {activeCredit && (
                 <p className="-mt-4 text-right text-[11px] tracking-wider text-bark/45 italic">
-                  Photography by {space.photoCredit}
+                  Photography by {activeCredit}
                 </p>
               )}
 
