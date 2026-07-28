@@ -66,6 +66,7 @@ const spacesData: Record<string, SpaceDetails> = {
     description: "Oaklin sits beneath a large, aged oak tree overlooking the lake. The oak's wide canopy frames the ceremony while the water stretches out beyond it, and the site comfortably accommodates up to 200 guests. It's a natural, established setting that needs little added to it.",
     aboutHeading: "About Oaklin",
     scriptTagline: "Strong and resilient, like the oak itself",
+    imageLeft: true,
     gallery: [
       "/images/Oaklin/IMG_1978.JPG",
       "/images/Oaklin/IMG_1560-1.jpg",
