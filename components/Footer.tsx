@@ -38,6 +38,23 @@ export default function Footer() {
           <p className="text-white/30 text-xs tracking-wider">
             © {new Date().getFullYear()} The Grove at DeFoor Farm. All rights reserved.
           </p>
+
+          {/* Designed by Creative Cowboys */}
+          <a
+            href="https://creativecowboys.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-10 flex flex-col items-center gap-2.5 opacity-60 hover:opacity-100 transition-opacity duration-300"
+          >
+            <span className="text-white/40 group-hover:text-white/60 text-[10px] tracking-[0.25em] uppercase transition-colors duration-300">
+              Designed by
+            </span>
+            <img
+              src="/images/grove/creative-cowboys-white.png"
+              alt="Creative Cowboys"
+              className="h-9 w-auto"
+            />
+          </a>
         </div>
       </div>
     </footer>
