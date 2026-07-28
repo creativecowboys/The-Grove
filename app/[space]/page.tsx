@@ -15,6 +15,7 @@ interface SpaceDetails {
   sideImg?: string;
   sideImages?: string[];
   sideImagePositions?: string[];
+  photoCredit?: string;
   sidePosition?: string;
   description: string;
   aboutHeading?: string;
@@ -115,6 +116,7 @@ const spacesData: Record<string, SpaceDetails> = {
     position: "object-center",
     aboutHeading: "About the Chapel",
     imageLeft: true,
+    photoCredit: "Hannah Langford",
     description: "Our open-air chapel offers a covered ceremony space with handcrafted wooden benches, chandelier lighting, and flowing white drapes, framed by sliding barn doors with a view of the grounds. Rain or shine, it's a beautiful place to gather for the moment that matters most.",
     sideImages: [
       "/images/grove/chapel-ceremony-wide.jpg",
@@ -373,6 +375,12 @@ export default function SpacePage() {
                   </>
                 )}
               </div>
+
+              {space.photoCredit && (
+                <p className="-mt-4 text-right text-[11px] tracking-wider text-bark/45 italic">
+                  Photography by {space.photoCredit}
+                </p>
+              )}
 
               {/* Booking/Inquiry Prompt (in-column on default layout; below image on mobile for image-left layout) */}
               {!space.imageLeft ? inquiryCard : <div className="lg:hidden">{inquiryCard}</div>}
