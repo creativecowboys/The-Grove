@@ -169,6 +169,21 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
       .filter(Boolean)
       .join("\n");
 
+    // Attach the inquiry details as a note on the contact. The opportunity
+    // endpoint rejects a `notes` property (422), so notes live on the contact.
+    try {
+      const nr = await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ body: `Website inquiry\n\n${details}` }),
+      });
+      if (!nr.ok) {
+        console.error("GHL contact note failed:", nr.status, await nr.text());
+      }
+    } catch (e) {
+      console.error("GHL contact note error:", e);
+    }
+
     const or = await fetch(`${GHL_BASE}/opportunities/`, {
       method: "POST",
       headers,
@@ -180,7 +195,6 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
         name: `${d.name} — ${eventLabel}`,
         status: "open",
         source: "The Grove Website",
-        notes: details,
       }),
     });
     const oj = await or.json().catch(() => ({}));
