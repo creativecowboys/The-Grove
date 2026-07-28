@@ -31,13 +31,9 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Luxury Amenities",
     img: "/images/grove/The-Grove-at-Defoor-Farms_2500-19.jpg",
     position: "object-center",
-    description: "Our Bridal Suite is nestled within The Barn featuring three hair & make up vanities with a large open sitting area. The Bridal Suite is also equipped with a kitchen, coffee bar, microwave, refrigerator. Last, but not least, a luxurious bath with free standing tub, large tile shower, double vanity and water closet.",
-    highlights: [
-      "Three hair & make up vanities with a large open sitting area",
-      "Equipped with a kitchen, coffee bar, microwave, and refrigerator",
-      "Luxurious bath with free standing tub, large tile shower, double vanity, and water closet",
-      "Nestled within The Barn",
-    ],
+    aboutHeading: "About the Bridal Suite",
+    imageLeft: true,
+    description: "Our Bridal Suite is nestled within The Barn, featuring three hair and make-up vanities with a large open sitting area. The suite is also equipped with a kitchen, coffee bar, microwave, and refrigerator. Last but not least, a luxurious bath with a free standing tub, large tile shower, double vanity, and water closet.",
   },
   "grooms-lodge": {
     name: "Grooms Lodge",
@@ -47,13 +43,9 @@ const spacesData: Record<string, SpaceDetails> = {
     position: "object-center",
     sideImg: "/images/grove/The-Grove-at-Defoor-Farms_2500-4Web.jpg",
     sidePosition: "object-center",
-    description: "Our Grooms Lodge offers a private space with a living room, game room, pool table, shuffle board, and large screen tv. We are also equipped with a full bath and dressing room. Groomsmen also have access to our patio and pool area.",
-    highlights: [
-      "Private space with a living room and game room",
-      "Pool table, shuffle board, and large screen TV",
-      "Full bath and dressing room",
-      "Access to our patio and pool area",
-    ],
+    aboutHeading: "About the Grooms Lodge",
+    imageLeft: true,
+    description: "Our Grooms Lodge offers a private space with a living room and game room, complete with a pool table, shuffle board, and large screen TV. It is also equipped with a full bath and dressing room, and groomsmen have access to our patio and pool area.",
   },
   "oaklin": {
     name: "Oaklin",
