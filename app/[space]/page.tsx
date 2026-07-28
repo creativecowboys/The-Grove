@@ -14,6 +14,7 @@ interface SpaceDetails {
   position?: string;
   sideImg?: string;
   sideImages?: string[];
+  sideImagePositions?: string[];
   sidePosition?: string;
   description: string;
   aboutHeading?: string;
@@ -34,7 +35,7 @@ const spacesData: Record<string, SpaceDetails> = {
     aboutHeading: "About the Bridal Suite",
     imageLeft: true,
     description: "Our Bridal Suite is nestled within The Barn, featuring three hair and make-up vanities with a large open sitting area. The suite is also equipped with a kitchen, coffee bar, microwave, and refrigerator. Last but not least, a luxurious bath with a free standing tub, large tile shower, double vanity, and water closet.",
-    gallery: [
+    sideImages: [
       "/images/grove/bridal-lounge-mirror.jpg",
       "/images/grove/bridal-lounge-bar.jpg",
       "/images/grove/bridal-bath-shower.jpg",
@@ -59,24 +60,24 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Ceremony Sites",
     img: "/images/Oaklin/TGDF-64_warm.png",
     position: "object-[center_60%]",
-    sideImg: "/images/Oaklin/IMG_1978.JPG",
-    sidePosition: "object-bottom",
-    description: "Oaklin sits beneath a large, aged oak tree overlooking the lake. The oak's wide canopy frames the ceremony while the water stretches out beyond it, and the site comfortably accommodates up to 200 guests. It's a natural, established setting that needs little added to it.",
-    aboutHeading: "About Oaklin",
-    scriptTagline: "Strong and resilient, like the oak itself",
-    imageLeft: true,
-    gallery: [
+    sideImages: [
+      "/images/Oaklin/IMG_1978.JPG",
       "/images/Oaklin/IMG_1560-1.jpg",
       "/images/Oaklin/IMG_1562-1.jpg",
       "/images/Oaklin/IMG_1979.jpeg",
       "/images/grove/oaklin-ceremony-crowd.jpg",
     ],
-    galleryPositions: [
-      "object-center", // IMG_1978.JPG
-      "object-bottom", // IMG_1560-1.jpg (shifted up to see people)
-      "object-center", // IMG_1562-1.jpg
-      "object-center", // IMG_1979.jpeg
+    sideImagePositions: [
+      "object-bottom",
+      "object-bottom",
+      "object-center",
+      "object-center",
+      "object-center",
     ],
+    description: "Oaklin sits beneath a large, aged oak tree overlooking the lake. The oak's wide canopy frames the ceremony while the water stretches out beyond it, and the site comfortably accommodates up to 200 guests. It's a natural, established setting that needs little added to it.",
+    aboutHeading: "About Oaklin",
+    scriptTagline: "Strong and resilient, like the oak itself",
+    imageLeft: true,
   },
   "willow": {
     name: "Willow",
@@ -88,9 +89,8 @@ const spacesData: Record<string, SpaceDetails> = {
     aboutHeading: "About Willow",
     scriptTagline: "A symbol of hope and safety",
     imageLeft: true,
-    sideImg: "/images/grove/willow-arch-lakeside.jpg",
-    sidePosition: "object-center",
-    gallery: [
+    sideImages: [
+      "/images/grove/willow-arch-lakeside.jpg",
       "/images/grove/willow-benches-wide.jpg",
       "/images/grove/willow-aerial-benches.jpg",
       "/images/grove/willow-aerial-ceremony.jpg",
@@ -116,9 +116,8 @@ const spacesData: Record<string, SpaceDetails> = {
     aboutHeading: "About the Chapel",
     imageLeft: true,
     description: "Our open-air chapel offers a covered ceremony space with handcrafted wooden benches, chandelier lighting, and flowing white drapes, framed by sliding barn doors with a view of the grounds. Rain or shine, it's a beautiful place to gather for the moment that matters most.",
-    sideImg: "/images/grove/chapel-ceremony-wide.jpg",
-    sidePosition: "object-center",
-    gallery: [
+    sideImages: [
+      "/images/grove/chapel-ceremony-wide.jpg",
       "/images/grove/chapel-ceremony-cross.jpg",
       "/images/grove/chapel-processional.jpg",
       "/images/grove/chapel-doors-entrance.jpg",
@@ -332,7 +331,9 @@ export default function SpacePage() {
                       alt={`${space.name} Detail ${i + 1}`}
                       style={{ opacity: i === (sideImages ? sideIdx % sideImages.length : 0) ? 1 : 0 }}
                       className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                        sideImages ? "object-center" : space.sidePosition || space.position || "object-center"
+                        sideImages
+                          ? space.sideImagePositions?.[i] || "object-center"
+                          : space.sidePosition || space.position || "object-center"
                       }`}
                     />
                   ))}
