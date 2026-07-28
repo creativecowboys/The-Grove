@@ -113,7 +113,7 @@ const spacesData: Record<string, SpaceDetails> = {
     name: "The Chapel",
     tagline: "An Open-Air Sanctuary",
     category: "Ceremony Sites",
-    img: "/images/grove/chapel-benches.jpg",
+    img: "/images/grove/chapel-benches-warm.jpg",
     position: "object-center",
     aboutHeading: "About the Chapel",
     imageLeft: true,
