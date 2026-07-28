@@ -34,6 +34,12 @@ const spacesData: Record<string, SpaceDetails> = {
     aboutHeading: "About the Bridal Suite",
     imageLeft: true,
     description: "Our Bridal Suite is nestled within The Barn, featuring three hair and make-up vanities with a large open sitting area. The suite is also equipped with a kitchen, coffee bar, microwave, and refrigerator. Last but not least, a luxurious bath with a free standing tub, large tile shower, double vanity, and water closet.",
+    gallery: [
+      "/images/grove/bridal-lounge-mirror.jpg",
+      "/images/grove/bridal-lounge-bar.jpg",
+      "/images/grove/bridal-bath-shower.jpg",
+      "/images/grove/bridal-bath-tub.jpg",
+    ],
   },
   "grooms-lodge": {
     name: "Grooms Lodge",
@@ -60,10 +66,10 @@ const spacesData: Record<string, SpaceDetails> = {
     scriptTagline: "Strong and resilient, like the oak itself",
     imageLeft: true,
     gallery: [
-      "/images/Oaklin/IMG_1978.JPG",
       "/images/Oaklin/IMG_1560-1.jpg",
       "/images/Oaklin/IMG_1562-1.jpg",
       "/images/Oaklin/IMG_1979.jpeg",
+      "/images/grove/oaklin-ceremony-crowd.jpg",
     ],
     galleryPositions: [
       "object-center", // IMG_1978.JPG
@@ -82,6 +88,14 @@ const spacesData: Record<string, SpaceDetails> = {
     aboutHeading: "About Willow",
     scriptTagline: "A symbol of hope and safety",
     imageLeft: true,
+    sideImg: "/images/grove/willow-arch-lakeside.jpg",
+    sidePosition: "object-center",
+    gallery: [
+      "/images/grove/willow-benches-wide.jpg",
+      "/images/grove/willow-aerial-benches.jpg",
+      "/images/grove/willow-aerial-ceremony.jpg",
+      "/images/grove/willow-aerial-bride.jpg",
+    ],
   },
   "the-grove": {
     name: "The Grove",
@@ -102,6 +116,14 @@ const spacesData: Record<string, SpaceDetails> = {
     aboutHeading: "About the Chapel",
     imageLeft: true,
     description: "Our open-air chapel offers a covered ceremony space with handcrafted wooden benches, chandelier lighting, and flowing white drapes, framed by sliding barn doors with a view of the grounds. Rain or shine, it's a beautiful place to gather for the moment that matters most.",
+    sideImg: "/images/grove/chapel-ceremony-wide.jpg",
+    sidePosition: "object-center",
+    gallery: [
+      "/images/grove/chapel-ceremony-cross.jpg",
+      "/images/grove/chapel-processional.jpg",
+      "/images/grove/chapel-doors-entrance.jpg",
+      "/images/grove/chapel-doors-closed.jpg",
+    ],
   },
   "the-barn": {
     name: "The Barn",
@@ -109,7 +131,6 @@ const spacesData: Record<string, SpaceDetails> = {
     category: "Venue Features",
     img: "/images/grove/The-Grove-at-Defoor-Farms_2500-90.jpg",
     position: "object-center",
-    sideImg: "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
     sideImages: [
       "/images/grove/The-Grove-at-Defoor-Farms_2500-10.jpg",
       "/images/grove/barn-reception-pampas.jpg",
@@ -118,6 +139,8 @@ const spacesData: Record<string, SpaceDetails> = {
       "/images/grove/barn-patio-lights.jpg",
       "/images/grove/barn-across-lake-flowers.jpg",
       "/images/grove/barn-night-party.jpg",
+      "/images/grove/barn-exterior-lakeside.jpg",
+      "/images/grove/barn-front-walkway.jpg",
     ],
     sidePosition: "object-center",
     aboutHeading: "About the Barn",
