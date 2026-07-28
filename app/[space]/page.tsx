@@ -116,7 +116,7 @@ const spacesData: Record<string, SpaceDetails> = {
     position: "object-center",
     aboutHeading: "About the Chapel",
     imageLeft: true,
-    photoCredit: "Hannah Langford",
+    photoCredit: "Brittany Sloan",
     description: "Our open-air chapel offers a covered ceremony space with handcrafted wooden benches, chandelier lighting, and flowing white drapes, framed by sliding barn doors with a view of the grounds. Rain or shine, it's a beautiful place to gather for the moment that matters most.",
     sideImages: [
       "/images/grove/chapel-ceremony-wide.jpg",
