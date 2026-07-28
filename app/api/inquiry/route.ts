@@ -304,5 +304,11 @@ export async function POST(request: Request) {
     );
   }
 
-  return Response.json({ ok: true, email: email.ok, ghl: ghl.ok });
+  return Response.json({
+    ok: true,
+    email: email.ok,
+    ghl: ghl.ok,
+    // Temporary diagnostic — remove once GHL is confirmed working.
+    ghlReason: ghl.ok ? null : ghl.reason,
+  });
 }
