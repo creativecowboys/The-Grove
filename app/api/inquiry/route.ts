@@ -15,7 +15,8 @@
      GHL_API_TOKEN         GHL Private Integration token (opportunity side)
      GHL_LOCATION_ID       GHL sub-account (location) id
      GHL_PIPELINE_ID       Pipeline the opportunity lands in
-     GHL_PIPELINE_STAGE_ID Stage within that pipeline (new lead)
+     GHL_STAGE_NAME        Optional — stage to drop the lead into
+                           (default: "New Lead"; falls back to first stage)
    ============================================================ */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,14 +57,43 @@ type Inquiry = {
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
+/* Resolve the target stage id from the pipeline (by name, default first). */
+async function resolveStageId(
+  headers: Record<string, string>,
+  locationId: string,
+  pipelineId: string
+): Promise<string | null> {
+  const wanted = (process.env.GHL_STAGE_NAME || "New Lead").trim().toLowerCase();
+  try {
+    const r = await fetch(
+      `${GHL_BASE}/opportunities/pipelines?locationId=${encodeURIComponent(locationId)}`,
+      { headers }
+    );
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      console.error("GHL pipelines fetch failed:", r.status, JSON.stringify(j));
+      return null;
+    }
+    const pipeline = (j?.pipelines || []).find(
+      (p: { id: string }) => p.id === pipelineId
+    );
+    const stages: { id: string; name: string }[] = pipeline?.stages || [];
+    if (!stages.length) return null;
+    const match = stages.find((s) => (s.name || "").trim().toLowerCase() === wanted);
+    return (match || stages[0]).id;
+  } catch (e) {
+    console.error("GHL pipelines fetch error:", e);
+    return null;
+  }
+}
+
 /* --- GHL: upsert the contact, then open an opportunity for it --- */
 async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
   const token = process.env.GHL_API_TOKEN;
   const locationId = process.env.GHL_LOCATION_ID;
   const pipelineId = process.env.GHL_PIPELINE_ID;
-  const pipelineStageId = process.env.GHL_PIPELINE_STAGE_ID;
 
-  if (!token || !locationId || !pipelineId || !pipelineStageId) {
+  if (!token || !locationId || !pipelineId) {
     console.warn("GHL not configured — skipping opportunity creation.");
     return { ok: false, reason: "not_configured" };
   }
@@ -74,6 +104,12 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
     "Content-Type": "application/json",
     Accept: "application/json",
   };
+
+  const pipelineStageId = await resolveStageId(headers, locationId, pipelineId);
+  if (!pipelineStageId) {
+    console.error("GHL could not resolve a pipeline stage id.");
+    return { ok: false, reason: "no_stage_id" };
+  }
 
   const [firstName, ...rest] = d.name.trim().split(/\s+/);
   const lastName = rest.join(" ");
