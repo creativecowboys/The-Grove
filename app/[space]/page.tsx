@@ -274,13 +274,13 @@ export default function SpacePage() {
           />
         </div>
         <div className="relative z-10 text-center text-white px-6 cursor-default select-none">
-          <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4">
+          <p className="text-gold-light tracking-[0.3em] text-xs font-bold uppercase mb-4 text-shadow-sm">
             {space.category}
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
             {space.name}
           </h1>
-          <div className="w-16 h-px bg-gold mx-auto mt-6" />
+          <div className="w-16 h-px bg-gold-light mx-auto mt-6" />
           <p className="text-white/80 font-serif italic text-lg sm:text-xl mt-4">
             {space.tagline}
           </p>

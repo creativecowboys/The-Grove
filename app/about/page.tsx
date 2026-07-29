@@ -23,7 +23,7 @@ export default function AboutPage() {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4"
+            className="text-gold-light tracking-[0.3em] text-xs font-bold uppercase mb-4 text-shadow-sm"
           >
             The Heritage & Vision
           </motion.p>
@@ -35,7 +35,7 @@ export default function AboutPage() {
           >
             Our Story
           </motion.h1>
-          <div className="w-16 h-px bg-gold mx-auto mt-6" />
+          <div className="w-16 h-px bg-gold-light mx-auto mt-6" />
         </div>
       </section>
 

@@ -38,7 +38,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-gold tracking-[0.18em] text-xs font-bold uppercase mb-2"
+          className="text-gold-light tracking-[0.18em] text-xs font-bold uppercase mb-2 text-shadow-sm"
         >
           West Georgia's Premiere Event Venue
         </motion.p>

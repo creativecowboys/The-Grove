@@ -3,6 +3,8 @@
 @theme {
   --color-gold: #A88757;
   --color-gold-dark: #8A6D43;
+  /* Lighter gold for use over hero photography — the base gold is too dark to read there */
+  --color-gold-light: #D4B888;
   --color-bark: #5A544A;
   --color-taupe: #9C8E7A;
   --color-cream: #F8F5F0;
