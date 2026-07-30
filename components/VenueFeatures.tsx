@@ -15,7 +15,7 @@ const features = [
   {
     title: "The Lake",
     slug: "the-lake",
-    img: "/images/grove/The-Grove-at-Defoor-Farms_2500-50.jpg",
+    img: "/images/grove/lake-chairs-firepit.jpg",
     description: "We have a beautiful 6 acre lake with two docks. The first dock features a covered seating area while the second dock features a swing. We also have several seating areas around the lake to view the beautiful lit fountain.",
     detail: "6 Acres · Two Docks · Lit Fountain",
   },

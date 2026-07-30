@@ -13,7 +13,7 @@ const events = [
   },
   {
     title: "Corporate Events",
-    img: "/images/grove/cigar-bar-sunset-v2.jpg",
+    img: "/images/grove/cigar-bar-sunset-v3.jpg",
     description: "Whether you are hosting a fundraiser, revealing the next phase of your company, or simply celebrating your employees. We offer the perfect opportunity for team building, including areas for a cookout and relaxing. As well as fishing our fully stocked lake.",
   },
 ];
