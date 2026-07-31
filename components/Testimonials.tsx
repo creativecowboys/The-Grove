@@ -57,7 +57,11 @@ export default function Testimonials() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <p className="font-serif text-2xl lg:text-3xl text-white/90 italic leading-relaxed mb-6">
+              {/* Reserve the height of the tallest quote at each breakpoint so the
+                  page doesn't jump as the carousel rotates. Measured: narrow phones
+                  wrap the longest quote to 3 lines (39px each); from ~480px up it's
+                  2 lines; at lg the font grows so 2 lines = 97.6px. */}
+              <p className="font-serif text-2xl lg:text-3xl text-white/90 italic leading-relaxed mb-6 min-h-[7.3125rem] min-[480px]:min-h-[4.875rem] lg:min-h-[6.1rem] flex items-center justify-center">
                 {quotes[current].text}
               </p>
               <p className="text-gold tracking-[0.25em] text-xs font-bold uppercase">
