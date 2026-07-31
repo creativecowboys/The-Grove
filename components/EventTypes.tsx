@@ -8,7 +8,7 @@ import Link from "next/link";
 const events = [
   {
     title: "Weddings",
-    img: "/images/weddings.jpg",
+    img: "/images/grove/wedding-couple-sunset.jpg",
     description: "Your wedding day should be as special as the person you are choosing to spend the rest of your life with. With our 4 beautiful wedding sites, as well as grooms lodge and bridal suite, we have everything you need to make your special day perfect.",
   },
   {
@@ -62,7 +62,7 @@ export default function EventTypes() {
               {/* Text pinned to bottom */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <div className="w-8 h-px bg-gold mb-4" />
-                <h3 className="font-serif text-3xl text-white mb-3">{event.title}</h3>
+                <h3 className="font-serif text-3xl text-white mb-3 text-shadow">{event.title}</h3>
                 <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-xs">{event.description}</p>
                 <Link
                   href="/contact"
