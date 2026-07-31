@@ -3130,9 +3130,8 @@
   "blocks": [
    {
     "type": "img",
-    "src": "https://images.unsplash.com/photo-1519741497674-611481863552?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjkxMTF8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMHdlZGRpbmclMjB2ZW51ZXMlMjBuZWFyJTIwbWV8ZW58MHx8fHwxNzI5MDgxODg5fDA&ixlib=rb-4.0.3&q=80&w=1080",
-    "alt": "groom beside bride holding bouquet flowers",
-    "missing": true
+    "src": "/images/grove/wedding-couple-sunset.jpg",
+    "alt": "A couple at sunset at The Grove at DeFoor Farm"
    },
    {
     "type": "h1",
@@ -3204,9 +3203,8 @@
    },
    {
     "type": "img",
-    "src": "https://images.unsplash.com/photo-1439539698758-ba2680ecadb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjkxMTF8MHwxfHNlYXJjaHw1fHxzbWFsbCUyMHdlZGRpbmclMjB2ZW51ZXMlMjBuZWFyJTIwbWV8ZW58MHx8fHwxNzI5MDgxODg5fDA&ixlib=rb-4.0.3&q=80&w=1080",
-    "alt": "man standing near the woman walking in party during nighttime",
-    "missing": true
+    "src": "/images/grove/barn-night-party.jpg",
+    "alt": "Guests celebrating outside The Barn at night under string lights"
    },
    {
     "type": "h2",
@@ -3275,9 +3273,8 @@
    },
    {
     "type": "img",
-    "src": "https://images.unsplash.com/photo-1507504031003-b417219a0fde?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjkxMTJ8MHwxfHNlYXJjaHwxfHxBJTIwY291cGxlJTIwcGxhbm5pbmclMjB0aGVpciUyMHdlZGRpbmd8ZW58MHx8fHwxNzI0MDk3MDQ4fDA&ixlib=rb-4.0.3&q=85",
-    "alt": "A couple planning their wedding",
-    "missing": true
+    "src": "/images/grove/barn-tables-brick.jpg",
+    "alt": "Tables set for a reception inside The Barn"
    },
    {
     "type": "p",
@@ -3386,9 +3383,8 @@
    },
    {
     "type": "img",
-    "src": "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjkxMTJ8MHwxfHNlYXJjaHw3fHxBJTIwYmVhdXRpZnVsbHklMjBkZWNvcmF0ZWQlMjBiYWNreWFyZCUyMHdlZGRpbmclMjB2ZW51ZXxlbnwwfHx8fDE3MjQwOTcwNDh8MA&ixlib=rb-4.0.3&q=85",
-    "alt": "A beautifully decorated backyard wedding venue",
-    "missing": true
+    "src": "/images/grove/barn-patio-lights.jpg",
+    "alt": "Outdoor reception tables by the lake under string lights"
    },
    {
     "type": "h2",
