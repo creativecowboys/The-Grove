@@ -30,6 +30,8 @@ const EVENT_LABELS: Record<string, string> = {
   corporate: "Corporate Event",
   graduation: "Graduation Party",
   social: "Social Celebration / Reunion",
+  // Retired as an offered service, but kept so any older/in-flight
+  // submission still resolves to a readable label instead of a raw key.
   photoshoot: "Photo Shoot",
   other: "Other Event Type",
 };

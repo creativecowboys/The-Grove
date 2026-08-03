@@ -81,7 +81,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.55 }}
           className="text-white/60 tracking-[0.13em] text-xs uppercase mb-5"
         >
-          Weddings &nbsp;·&nbsp; Corporate &nbsp;·&nbsp; Photo Shoots
+          Weddings &nbsp;·&nbsp; Corporate Events
         </motion.p>
 
         {/* CTAs */}
