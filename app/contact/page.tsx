@@ -60,10 +60,9 @@ export default function ContactPage() {
                   <Clock className="w-5 h-5" />
                 </span>
                 <div>
-                  <h3 className="text-xs font-bold tracking-widest uppercase text-bark/50 mb-1">Tour Hours</h3>
+                  <h3 className="text-xs font-bold tracking-widest uppercase text-bark/50 mb-1">Business Hours</h3>
                   <p className="text-bark/85 text-sm leading-relaxed">
-                    Mon - Fri: 9:00 AM - 5:00 PM<br />
-                    Sat & Sun: By Appointment Only
+                    Monday - Friday: 9:00 AM - 5:00 PM
                   </p>
                 </div>
               </div>
