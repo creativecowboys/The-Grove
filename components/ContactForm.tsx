@@ -152,8 +152,6 @@ export default function ContactForm() {
           >
             <option value="wedding">Wedding Ceremony & Reception</option>
             <option value="corporate">Corporate Event</option>
-            <option value="graduation">Graduation Party</option>
-            <option value="social">Social Celebration / Reunion</option>
             <option value="other">Other Event Type</option>
           </select>
         </div>

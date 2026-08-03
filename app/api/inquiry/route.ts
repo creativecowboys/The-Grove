@@ -28,10 +28,10 @@ const GHL_VERSION = "2021-07-28";
 const EVENT_LABELS: Record<string, string> = {
   wedding: "Wedding Ceremony & Reception",
   corporate: "Corporate Event",
+  // Retired as offered services, but kept so any older/in-flight
+  // submission still resolves to a readable label instead of a raw key.
   graduation: "Graduation Party",
   social: "Social Celebration / Reunion",
-  // Retired as an offered service, but kept so any older/in-flight
-  // submission still resolves to a readable label instead of a raw key.
   photoshoot: "Photo Shoot",
   other: "Other Event Type",
 };
