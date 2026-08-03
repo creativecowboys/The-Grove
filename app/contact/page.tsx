@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Mail, Clock } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
 export default function ContactPage() {
@@ -38,19 +38,6 @@ export default function ContactPage() {
                     844 McBrayer Road<br />
                     Temple, GA 30179
                   </p>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="flex gap-4">
-                <span className="flex items-center justify-center w-10 h-10 bg-cream text-gold rounded-full flex-shrink-0">
-                  <Phone className="w-5 h-5" />
-                </span>
-                <div>
-                  <h3 className="text-xs font-bold tracking-widest uppercase text-bark/50 mb-1">Phone</h3>
-                  <a href="tel:4043046680" className="text-bark/85 text-sm hover:text-gold transition-colors">
-                    (404) 304-6680
-                  </a>
                 </div>
               </div>
 
