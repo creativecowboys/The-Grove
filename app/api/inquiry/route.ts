@@ -52,6 +52,9 @@ type Inquiry = {
   preferredDate: string;
   heardAbout: string;
   message: string;
+  brideName?: string;
+  groomName?: string;
+  companyName?: string;
 };
 
 const esc = (s: string) =>
@@ -150,6 +153,9 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
   try {
     const details = [
       `Event: ${eventLabel}`,
+      d.brideName ? `Bride's name: ${d.brideName}` : "",
+      d.groomName ? `Groom's name: ${d.groomName}` : "",
+      d.companyName ? `Company: ${d.companyName}` : "",
       d.preferredDate ? `Preferred date: ${d.preferredDate}` : "",
       d.guestCount ? `Guest count: ${d.guestCount}` : "",
       `Heard about us: ${heardLabel}`,
@@ -228,6 +234,9 @@ async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string) {
       <table style="width:100%;border-collapse:collapse;">
         ${row("Email", d.email)}
         ${row("Phone", d.phone)}
+        ${row("Bride's name", d.brideName || "")}
+        ${row("Groom's name", d.groomName || "")}
+        ${row("Company", d.companyName || "")}
         ${row("Preferred date", d.preferredDate)}
         ${row("Guest count", d.guestCount)}
         ${row("Heard about us", heardLabel)}
@@ -306,7 +315,7 @@ export async function POST(request: Request) {
   // Succeed for the visitor as long as at least one channel accepted the lead.
   if (!email.ok && !ghl.ok) {
     return Response.json(
-      { error: "We couldn't submit your inquiry. Please call us or try again." },
+      { error: "We couldn't submit your inquiry. Please try again, or email us at info@thegroveatdefoorfarm.com." },
       { status: 502 }
     );
   }

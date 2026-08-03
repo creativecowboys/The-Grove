@@ -13,6 +13,11 @@ export default function ContactForm() {
     preferredDate: "",
     heardAbout: "social",
     message: "",
+    // Conditional fields, carried over from the old WordPress form:
+    // bride/groom show for weddings, company shows for corporate events.
+    brideName: "",
+    groomName: "",
+    companyName: "",
   });
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -43,6 +48,9 @@ export default function ContactForm() {
         preferredDate: "",
         heardAbout: "social",
         message: "",
+        brideName: "",
+        groomName: "",
+        companyName: "",
       });
     } catch {
       setStatus("error");
@@ -150,6 +158,55 @@ export default function ContactForm() {
             <option value="other">Other Event Type</option>
           </select>
         </div>
+      </div>
+
+      {/* Carried over from the old WordPress form. These were hidden behind the
+          event-type dropdown there, which is why they often came in blank —
+          always visible here, all optional. */}
+      <div className="grid sm:grid-cols-2 gap-6">
+        <div>
+          <label htmlFor="brideName" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
+            Bride&apos;s Name
+          </label>
+          <input
+            type="text"
+            id="brideName"
+            name="brideName"
+            value={formData.brideName}
+            onChange={handleChange}
+            placeholder="Bride's Name"
+            className="w-full bg-cream border border-bark/15 px-4 py-3 text-bark placeholder:text-bark/30 focus:outline-none focus:border-gold text-sm transition-colors duration-200"
+          />
+        </div>
+        <div>
+          <label htmlFor="groomName" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
+            Groom&apos;s Name
+          </label>
+          <input
+            type="text"
+            id="groomName"
+            name="groomName"
+            value={formData.groomName}
+            onChange={handleChange}
+            placeholder="Groom's Name"
+            className="w-full bg-cream border border-bark/15 px-4 py-3 text-bark placeholder:text-bark/30 focus:outline-none focus:border-gold text-sm transition-colors duration-200"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="companyName" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
+          Company Name
+        </label>
+        <input
+          type="text"
+          id="companyName"
+          name="companyName"
+          value={formData.companyName}
+          onChange={handleChange}
+          placeholder="Company Name (for corporate events)"
+          className="w-full bg-cream border border-bark/15 px-4 py-3 text-bark placeholder:text-bark/30 focus:outline-none focus:border-gold text-sm transition-colors duration-200"
+        />
       </div>
 
       <div className="grid sm:grid-cols-2 gap-6">
