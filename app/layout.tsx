@@ -27,9 +27,9 @@ const greatVibes = Great_Vibes({
 export const metadata: Metadata = {
   title: "The Grove at DeFoor Farm | West Georgia's Premiere Event Venue",
   description: "The Grove at DeFoor Farm — Where Shared Memories Are Made. Beautiful weddings, corporate retreats, and social events in West Georgia.",
-  icons: {
-    icon: "/images/grove/TheGroveLogo-1024x172.png",
-  },
+  // Icons come from the app/ file conventions (favicon.ico, icon.png,
+  // apple-icon.png) — the venue's original square mark from the old site.
+  // Don't set `icons` here or it overrides those.
 };
 
 export default function RootLayout({

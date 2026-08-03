@@ -9,6 +9,7 @@ const events = [
   {
     title: "Weddings",
     img: "/images/grove/wedding-couple-sunset.jpg",
+    credit: "📷 @laurenbphotography",
     description: "Your wedding day should be as special as the person you are choosing to spend the rest of your life with. With our 4 beautiful wedding sites, as well as grooms lodge and bridal suite, we have everything you need to make your special day perfect.",
   },
   {
@@ -58,6 +59,14 @@ export default function EventTypes() {
 
               {/* Gradient overlay — stronger at bottom */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+
+              {/* Photographer credit, bottom-right so it sits clear of the
+                  left-aligned title/description block */}
+              {event.credit && (
+                <span className="absolute bottom-3 right-4 text-white/55 text-[11px] tracking-wide">
+                  {event.credit}
+                </span>
+              )}
 
               {/* Text pinned to bottom */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
