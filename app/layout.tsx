@@ -25,8 +25,12 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "The Grove at DeFoor Farm | West Georgia's Premiere Event Venue",
-  description: "The Grove at DeFoor Farm — Where Shared Memories Are Made. Beautiful weddings, corporate retreats, and social events in West Georgia.",
+  // Lets every page's `alternates.canonical` resolve to an absolute URL.
+  metadataBase: new URL("https://thegroveatdefoorfarm.com"),
+  title: "The Grove at DeFoor Farm | Wedding Venue in Temple, GA",
+  description:
+    "A family-owned wedding and corporate event venue in Temple, Georgia. Four ceremony sites, a 7,200 sq ft barn for up to 200 guests, and a 6-acre lake.",
+  alternates: { canonical: "/" },
   // Icons come from the app/ file conventions (favicon.ico, icon.png,
   // apple-icon.png) — the venue's original square mark from the old site.
   // Don't set `icons` here or it overrides those.
