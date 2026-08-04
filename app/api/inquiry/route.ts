@@ -297,11 +297,34 @@ export async function POST(request: Request) {
     preferredDate: (body.preferredDate || "").trim(),
     heardAbout: (body.heardAbout || "").trim(),
     message: (body.message || "").trim(),
+    brideName: (body.brideName || "").trim(),
+    groomName: (body.groomName || "").trim(),
+    companyName: (body.companyName || "").trim(),
   };
 
-  if (!d.name || !EMAIL_RE.test(d.email) || !d.phone) {
+  // Server-side mirror of the form's required fields. The browser's `required`
+  // attribute is trivially bypassed, and Christy needs every field filled in.
+  const missing: string[] = [];
+  if (!d.name?.trim()) missing.push("name");
+  if (!EMAIL_RE.test(d.email || "")) missing.push("a valid email");
+  if (!d.phone?.trim()) missing.push("phone number");
+  if (!d.eventType?.trim()) missing.push("event type");
+  if (!d.preferredDate?.trim()) missing.push("preferred date");
+  if (!d.guestCount?.trim()) missing.push("guest count");
+  if (!d.heardAbout?.trim()) missing.push("how you heard about us");
+  if (!d.message?.trim()) missing.push("message");
+  // Only required for the event type they belong to.
+  if (d.eventType === "wedding") {
+    if (!d.brideName?.trim()) missing.push("bride's name");
+    if (!d.groomName?.trim()) missing.push("groom's name");
+  }
+  if (d.eventType === "corporate" && !d.companyName?.trim()) {
+    missing.push("company name");
+  }
+
+  if (missing.length) {
     return Response.json(
-      { error: "Please provide your name, a valid email, and a phone number." },
+      { error: `Please complete every field — still needed: ${missing.join(", ")}.` },
       { status: 400 }
     );
   }

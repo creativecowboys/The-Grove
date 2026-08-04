@@ -8,10 +8,12 @@ export default function ContactForm() {
     name: "",
     email: "",
     phone: "",
-    eventType: "wedding",
+    // Empty so the visitor has to make a real choice — a pre-selected
+    // dropdown silently sent Christy an answer nobody actually picked.
+    eventType: "",
     guestCount: "",
     preferredDate: "",
-    heardAbout: "social",
+    heardAbout: "",
     message: "",
     // Conditional fields, carried over from the old WordPress form:
     // bride/groom show for weddings, company shows for corporate events.
@@ -43,10 +45,10 @@ export default function ContactForm() {
         name: "",
         email: "",
         phone: "",
-        eventType: "wedding",
+        eventType: "",
         guestCount: "",
         preferredDate: "",
-        heardAbout: "social",
+        heardAbout: "",
         message: "",
         brideName: "",
         groomName: "",
@@ -141,15 +143,19 @@ export default function ContactForm() {
         {/* Event Type */}
         <div>
           <label htmlFor="eventType" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-            Event Type
+            Event Type *
           </label>
           <select
             id="eventType"
             name="eventType"
+            required
             value={formData.eventType}
             onChange={handleChange}
             className="w-full bg-cream border border-bark/15 px-4 py-3 text-bark focus:outline-none focus:border-gold text-sm transition-colors duration-200"
           >
+            <option value="" disabled>
+              Select an event type
+            </option>
             <option value="wedding">Wedding Ceremony & Reception</option>
             <option value="corporate">Corporate Event</option>
             <option value="other">Other Event Type</option>
@@ -157,18 +163,19 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Carried over from the old WordPress form. These were hidden behind the
-          event-type dropdown there, which is why they often came in blank —
-          always visible here, all optional. */}
+      {/* Carried over from the old WordPress form. Always visible (they were
+          hidden behind the event-type dropdown there, which is why they came in
+          blank), and required for the event type they apply to. */}
       <div className="grid sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="brideName" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-            Bride&apos;s Name
+            Bride&apos;s Name{formData.eventType === "wedding" ? " *" : ""}
           </label>
           <input
             type="text"
             id="brideName"
             name="brideName"
+            required={formData.eventType === "wedding"}
             value={formData.brideName}
             onChange={handleChange}
             placeholder="Bride's Name"
@@ -177,12 +184,13 @@ export default function ContactForm() {
         </div>
         <div>
           <label htmlFor="groomName" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-            Groom&apos;s Name
+            Groom&apos;s Name{formData.eventType === "wedding" ? " *" : ""}
           </label>
           <input
             type="text"
             id="groomName"
             name="groomName"
+            required={formData.eventType === "wedding"}
             value={formData.groomName}
             onChange={handleChange}
             placeholder="Groom's Name"
@@ -193,12 +201,13 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="companyName" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-          Company Name
+          Company Name{formData.eventType === "corporate" ? " *" : ""}
         </label>
         <input
           type="text"
           id="companyName"
           name="companyName"
+          required={formData.eventType === "corporate"}
           value={formData.companyName}
           onChange={handleChange}
           placeholder="Company Name (for corporate events)"
@@ -210,12 +219,13 @@ export default function ContactForm() {
         {/* Preferred Date */}
         <div>
           <label htmlFor="preferredDate" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-            Preferred Date / Season
+            Preferred Date / Season *
           </label>
           <input
             type="text"
             id="preferredDate"
             name="preferredDate"
+            required
             value={formData.preferredDate}
             onChange={handleChange}
             placeholder="e.g. October 2026 or Oct 10, 2026"
@@ -226,12 +236,13 @@ export default function ContactForm() {
         {/* Guest Count */}
         <div>
           <label htmlFor="guestCount" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-            Estimated Guest Count
+            Estimated Guest Count *
           </label>
           <input
             type="number"
             id="guestCount"
             name="guestCount"
+            required
             value={formData.guestCount}
             onChange={handleChange}
             placeholder="e.g. 150"
@@ -243,15 +254,19 @@ export default function ContactForm() {
       {/* Referral */}
       <div>
         <label htmlFor="heardAbout" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-          How did you hear about us?
+          How did you hear about us? *
         </label>
         <select
           id="heardAbout"
           name="heardAbout"
+          required
           value={formData.heardAbout}
           onChange={handleChange}
           className="w-full bg-cream border border-bark/15 px-4 py-3 text-bark focus:outline-none focus:border-gold text-sm transition-colors duration-200"
         >
+          <option value="" disabled>
+            Select an option
+          </option>
           <option value="social">Instagram / Facebook</option>
           <option value="search">Google Search</option>
           <option value="referral">Friend / Family Referral</option>
@@ -264,11 +279,12 @@ export default function ContactForm() {
       {/* Message */}
       <div>
         <label htmlFor="message" className="block text-xs font-bold tracking-widest uppercase text-bark/60 mb-2">
-          Message & Details
+          Message & Details *
         </label>
         <textarea
           id="message"
           name="message"
+          required
           rows={5}
           value={formData.message}
           onChange={handleChange}
