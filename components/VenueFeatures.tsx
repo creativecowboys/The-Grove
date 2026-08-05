@@ -31,10 +31,12 @@ export default function VenueFeatures() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4">Wedding Sites</p>
+          {/* The Barn and The Lake aren't ceremony sites — this section used to
+              repeat the wedding-sites heading verbatim. */}
+          <p className="text-gold tracking-[0.3em] text-xs font-bold uppercase mb-4">The Property</p>
           <h2 className="font-serif text-4xl lg:text-5xl text-bark">
-            Our Venue Features<br />
-            <em>4 Unique Wedding Sites</em>
+            More to<br />
+            <em>Explore</em>
           </h2>
           <div className="w-16 h-px bg-gold mx-auto mt-6" />
         </motion.div>
