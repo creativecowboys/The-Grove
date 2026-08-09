@@ -45,6 +45,14 @@ const HEARD_LABELS: Record<string, string> = {
   other: "Other",
 };
 
+type Attribution = {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  referrer?: string;
+  landing?: string;
+};
+
 type Inquiry = {
   name: string;
   email: string;
@@ -57,10 +65,61 @@ type Inquiry = {
   brideName?: string;
   groomName?: string;
   companyName?: string;
+  attribution?: Attribution;
 };
+
+/* Fold raw first-touch data down to the one line Christy actually reads.
+   UTM params (our own tagged links) outrank the referrer heuristics. */
+function sourceLabel(a?: Attribution): string {
+  if (a?.utm_source) {
+    const src = a.utm_source.toLowerCase();
+    const medium = (a.utm_medium || "").toLowerCase();
+    if (src === "google" && medium === "gbp") {
+      if (a.utm_campaign === "booking-link") return "Google Business Profile — booking link";
+      if (a.utm_campaign === "website-link") return "Google Business Profile — website link";
+      if (a.utm_campaign === "post") return "Google Business Profile — post";
+      return "Google Business Profile";
+    }
+    return ["Campaign:", a.utm_source, a.utm_medium, a.utm_campaign]
+      .filter(Boolean)
+      .join(" ");
+  }
+  const ref = (a?.referrer || "").toLowerCase();
+  if (ref.includes("google.")) return "Google search (organic)";
+  if (ref.includes("bing.")) return "Bing search (organic)";
+  if (ref.includes("facebook.") || ref.includes("fb.com")) return "Facebook";
+  if (ref.includes("instagram.")) return "Instagram";
+  if (ref.includes("zola.")) return "Zola";
+  if (ref.includes("theknot.")) return "The Knot";
+  if (ref) {
+    try {
+      return `Referral: ${new URL(a!.referrer!).hostname}`;
+    } catch {
+      return "Referral";
+    }
+  }
+  return "Direct / unknown";
+}
 
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+/* Attribution arrives from the browser, so treat it as untrusted input:
+   strings only, trimmed, capped, unknown keys dropped. */
+function sanitizeAttribution(raw: unknown): Attribution | undefined {
+  if (!raw || typeof raw !== "object") return undefined;
+  const src = raw as Record<string, unknown>;
+  const pick = (k: string) =>
+    typeof src[k] === "string" ? (src[k] as string).trim().slice(0, 300) : undefined;
+  const a: Attribution = {
+    utm_source: pick("utm_source"),
+    utm_medium: pick("utm_medium"),
+    utm_campaign: pick("utm_campaign"),
+    referrer: pick("referrer"),
+    landing: pick("landing"),
+  };
+  return a.utm_source || a.referrer || a.landing ? a : undefined;
+}
 
 /* Resolve the target stage id from the pipeline (by name, default first). */
 async function resolveStageId(
@@ -93,7 +152,7 @@ async function resolveStageId(
 }
 
 /* --- GHL: upsert the contact, then open an opportunity for it --- */
-async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
+async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string, srcLabel: string) {
   const token = process.env.GHL_API_TOKEN;
   const locationId = process.env.GHL_LOCATION_ID;
   const pipelineId = process.env.GHL_PIPELINE_ID;
@@ -161,6 +220,8 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
       d.preferredDate ? `Preferred date: ${d.preferredDate}` : "",
       d.guestCount ? `Guest count: ${d.guestCount}` : "",
       `Heard about us: ${heardLabel}`,
+      `Lead source (tracked): ${srcLabel}`,
+      d.attribution?.landing ? `Landing page: ${d.attribution.landing}` : "",
       d.message ? `Message: ${d.message}` : "",
     ]
       .filter(Boolean)
@@ -191,7 +252,9 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
         contactId,
         name: `${d.name} — ${eventLabel}`,
         status: "open",
-        source: "The Grove Website",
+        // The source field shows on the opportunity card in GHL — this is
+        // where Christy sees at a glance which channel produced the lead.
+        source: `The Grove Website · ${srcLabel}`,
       }),
     });
     const oj = await or.json().catch(() => ({}));
@@ -212,7 +275,7 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string) {
 }
 
 /* --- Resend: email the venue a formatted inquiry --- */
-async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string) {
+async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string, srcLabel: string) {
   const key = process.env.RESEND_API_KEY;
   if (!key) {
     console.warn("RESEND_API_KEY not set — skipping venue email.");
@@ -242,6 +305,7 @@ async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string) {
         ${row("Preferred date", d.preferredDate)}
         ${row("Guest count", d.guestCount)}
         ${row("Heard about us", heardLabel)}
+        ${row("Lead source", srcLabel)}
       </table>
       ${
         d.message
@@ -300,6 +364,7 @@ export async function POST(request: Request) {
     brideName: (body.brideName || "").trim(),
     groomName: (body.groomName || "").trim(),
     companyName: (body.companyName || "").trim(),
+    attribution: sanitizeAttribution(body.attribution),
   };
 
   // Server-side mirror of the form's required fields. The browser's `required`
@@ -332,9 +397,11 @@ export async function POST(request: Request) {
   const eventLabel = EVENT_LABELS[d.eventType] || d.eventType || "Event Inquiry";
   const heardLabel = HEARD_LABELS[d.heardAbout] || d.heardAbout || "—";
 
+  const srcLabel = sourceLabel(d.attribution);
+
   const [email, ghl] = await Promise.all([
-    emailVenue(d, eventLabel, heardLabel),
-    pushToGHL(d, eventLabel, heardLabel),
+    emailVenue(d, eventLabel, heardLabel, srcLabel),
+    pushToGHL(d, eventLabel, heardLabel, srcLabel),
   ]);
 
   // Succeed for the visitor as long as at least one channel accepted the lead.

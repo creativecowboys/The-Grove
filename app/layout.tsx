@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import AttributionTracker from "@/components/AttributionTracker";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -48,6 +49,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white">
         <ScrollToTop />
+        <AttributionTracker />
         <Header />
         <main className="flex-grow pt-[104px] md:pt-[116px]">{children}</main>
         <Footer />

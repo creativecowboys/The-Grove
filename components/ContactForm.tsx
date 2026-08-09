@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { CheckCircle2, AlertCircle } from "lucide-react";
+import { getAttribution } from "@/lib/attribution";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ export default function ContactForm() {
       const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, attribution: getAttribution() || undefined }),
       });
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
