@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LegacyPage, { getLegacyEntry } from "@/components/LegacyPage";
 
-const SLUG = "wedd";
+const SLUG = "wedding-venue-near-dallas-georgia";
 
 export function generateMetadata(): Metadata {
   const entry = getLegacyEntry(SLUG);

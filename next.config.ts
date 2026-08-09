@@ -17,6 +17,9 @@ const legacyRedirects = [
   { source: "/sample-page", destination: "/" },
   { source: "/2021/11/03/hello-world", destination: "/" },
 
+  // The Dallas GA page originally shipped under this botched slug
+  { source: "/wedd", destination: "/wedding-venue-near-dallas-georgia" },
+
   // Tag archives with a good topical home
   { source: "/tag/kennesaw-wedding-venue", destination: "/wedding-venue-near-kennesaw-ga" },
   { source: "/tag/west-georgia-wedding-venue", destination: "/wedding-venue-in-temple-georgia" },
