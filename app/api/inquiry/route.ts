@@ -19,6 +19,8 @@
                            (default: "New Lead"; falls back to first stage)
    ============================================================ */
 
+import { notifyChristy } from "@/lib/lead-sms";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const NOTIFY_DEFAULT = "info@thegroveatdefoorfarm.com";
 const FROM_DEFAULT = "The Grove Website <inquiries@creativecowboys.co>";
@@ -347,23 +349,25 @@ async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string, sr
 export async function POST(request: Request) {
   let body: Partial<Inquiry> = {};
   try {
-    body = await request.json();
+    const raw = await request.json();
+    body = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
   } catch {
     body = {};
   }
 
+  const field = (value: unknown, limit = 300) => typeof value === "string" ? value.trim().slice(0, limit) : "";
   const d: Inquiry = {
-    name: (body.name || "").trim(),
-    email: (body.email || "").trim().toLowerCase(),
-    phone: (body.phone || "").trim(),
-    eventType: (body.eventType || "").trim(),
-    guestCount: (body.guestCount || "").toString().trim(),
-    preferredDate: (body.preferredDate || "").trim(),
-    heardAbout: (body.heardAbout || "").trim(),
-    message: (body.message || "").trim(),
-    brideName: (body.brideName || "").trim(),
-    groomName: (body.groomName || "").trim(),
-    companyName: (body.companyName || "").trim(),
+    name: field(body.name),
+    email: field(body.email).toLowerCase(),
+    phone: field(body.phone),
+    eventType: field(body.eventType),
+    guestCount: field(typeof body.guestCount === "number" ? String(body.guestCount) : body.guestCount),
+    preferredDate: field(body.preferredDate),
+    heardAbout: field(body.heardAbout),
+    message: field(body.message, 10000),
+    brideName: field(body.brideName),
+    groomName: field(body.groomName),
+    companyName: field(body.companyName),
     attribution: sanitizeAttribution(body.attribution),
   };
 
@@ -411,6 +415,10 @@ export async function POST(request: Request) {
       { status: 502 }
     );
   }
+
+  // Text only after a channel accepted the inquiry. Explain an email-only
+  // fallback honestly; SMS failure must never invite a duplicate submission.
+  await notifyChristy(ghl.ok);
 
   return Response.json({ ok: true, email: email.ok, ghl: ghl.ok });
 }
