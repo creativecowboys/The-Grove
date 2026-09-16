@@ -56,3 +56,11 @@ Vercel edge rules now limit POST /api/inquiry to 5 requests per minute per IP an
 ## Access usability update
 
 At Dave’s request, the production access code was rotated to a memorable lowercase passphrase. Keep the value outside git. Existing sessions are revoked when this production setting takes effect. The independent signing secret and request limits remain in place.
+
+## Email-link login
+
+`LEADS_LOGIN_EMAIL` restricts email sign-in to one server-configured address. Requests use the existing Resend sender and a fixed destination URL. Repeated requests in a five-minute bucket share an idempotency key to avoid duplicate emails; the existing POST /leads edge limit also applies. Preview deployments never send login email.
+
+Links are signed, expire 10–15 minutes after requesting, and require a confirmation tap before issuing the existing eight-hour session. They are bearer links reusable until expiration, not single-use tokens; do not forward them. Rotating the signing secret, passphrase, or approved email invalidates pending links. No tokens or recipient addresses are logged by the application. The page sets no-referrer and noindex. The access-code option remains a backup.
+
+Validation: six security/provider tests, targeted lint and production build. Verify live request UI, rejected tampered link, and valid-link session after deploying.
