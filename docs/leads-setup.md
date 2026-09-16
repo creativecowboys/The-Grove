@@ -52,3 +52,7 @@ Claude then stopped with a monthly spending-limit error before deployment. Codex
 Dave approved direct Codex publication after Claude reached its spending limit. PR #10 is merged; deployment dpl_B2gULwm82XzZNGMSeHGZowJfQaFm is READY at commit 1ef73151ba31ee0c60e4b78ed783761cce517cfa. Production login and real GHL inquiry retrieval verified. Unauthenticated /api/leads returns 401.
 
 Vercel edge rules now limit POST /api/inquiry to 5 requests per minute per IP and POST /leads to 10 per minute per IP. Dashboard access/session secrets are provisioned. SMS activation saved in Production settings; this commit applies those settings. Final labeled form, SMS-delivery and recoverable-trash verification follows deployment.
+
+## Access usability update
+
+At Dave’s request, the production access code was rotated to a memorable lowercase passphrase. Keep the value outside git. Existing sessions are revoked when this production setting takes effect. The independent signing secret and request limits remain in place.
