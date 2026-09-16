@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Great_Vibes, Lato } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import SiteShell from "@/components/SiteShell";
 import ScrollToTop from "@/components/ScrollToTop";
-import AttributionTracker from "@/components/AttributionTracker";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -49,10 +47,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white">
         <ScrollToTop />
-        <AttributionTracker />
-        <Header />
-        <main className="flex-grow pt-[104px] md:pt-[116px]">{children}</main>
-        <Footer />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );
