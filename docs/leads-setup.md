@@ -46,3 +46,9 @@ The unit checks stub all provider calls: they do not send email, create real lea
 Dave authorized the full launch. The existing Claude/Burt desktop session accepted the handoff and corrected the GHL 2021-07-28 search query to `location_id`/`pipeline_id` and the status-response check to accept `succeded: true`. Local regression checks exercise both shapes. Live credentials, provider scopes/workflows and the final form/SMS round trip still need recorded verification.
 
 Claude then stopped with a monthly spending-limit error before deployment. Codex requested permission to publish directly because standing project instructions route publishing through Burt. No deployment or live test is claimed. Remaining launch gates: persistent throttling, login-secret provisioning, live GHL verification, production deployment, one labeled test and verified SMS delivery.
+
+## Production activation
+
+Dave approved direct Codex publication after Claude reached its spending limit. PR #10 is merged; deployment dpl_B2gULwm82XzZNGMSeHGZowJfQaFm is READY at commit 1ef73151ba31ee0c60e4b78ed783761cce517cfa. Production login and real GHL inquiry retrieval verified. Unauthenticated /api/leads returns 401.
+
+Vercel edge rules now limit POST /api/inquiry to 5 requests per minute per IP and POST /leads to 10 per minute per IP. Dashboard access/session secrets are provisioned. SMS activation saved in Production settings; this commit applies those settings. Final labeled form, SMS-delivery and recoverable-trash verification follows deployment.
