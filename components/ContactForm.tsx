@@ -25,6 +25,11 @@ export default function ContactForm() {
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
+  // Spam signals the API scores on. `website` is a honeypot no human sees;
+  // `startedAt` lets the server reject sub-4-second machine submissions.
+  const [website, setWebsite] = useState("");
+  const [startedAt] = useState(() => Date.now());
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -37,7 +42,12 @@ export default function ContactForm() {
       const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, attribution: getAttribution() || undefined }),
+        body: JSON.stringify({
+          ...formData,
+          attribution: getAttribution() || undefined,
+          website,
+          elapsedMs: Date.now() - startedAt,
+        }),
       });
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
@@ -86,6 +96,21 @@ export default function ContactForm() {
           <span>Something went wrong. Please check your network and try again.</span>
         </div>
       )}
+
+      {/* Honeypot — off-screen, skipped by tab and screen readers. Bots that
+          auto-fill every input land here and get silently dropped. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="website">Website</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
 
       <div className="grid sm:grid-cols-2 gap-6">
         {/* Name */}

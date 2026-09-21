@@ -20,6 +20,7 @@
    ============================================================ */
 
 import { notifyChristy } from "@/lib/lead-sms";
+import { assessInquiry } from "@/lib/spam";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const NOTIFY_DEFAULT = "info@thegroveatdefoorfarm.com";
@@ -68,6 +69,10 @@ type Inquiry = {
   groomName?: string;
   companyName?: string;
   attribution?: Attribution;
+  /** Honeypot — hidden field, always empty from the real form. */
+  website?: string;
+  /** Milliseconds between the form mounting and submit. */
+  elapsedMs?: number;
 };
 
 /* Fold raw first-touch data down to the one line Christy actually reads.
@@ -402,6 +407,27 @@ export async function POST(request: Request) {
   const heardLabel = HEARD_LABELS[d.heardAbout] || d.heardAbout || "—";
 
   const srcLabel = sourceLabel(d.attribution);
+
+  // Spam gate. A flagged inquiry gets the same "thanks" as a real one so the
+  // bot learns nothing, but nothing is emailed and nothing lands in GHL.
+  const verdict = assessInquiry({
+    name: d.name,
+    email: d.email,
+    phone: d.phone,
+    message: d.message,
+    preferredDate: d.preferredDate,
+    brideName: d.brideName,
+    groomName: d.groomName,
+    companyName: d.companyName,
+    honeypot: typeof body.website === "string" ? body.website : undefined,
+    elapsedMs: typeof body.elapsedMs === "number" ? body.elapsedMs : undefined,
+  });
+  if (verdict.spam) {
+    console.warn(
+      `Inquiry dropped as spam (score ${verdict.score}: ${verdict.reasons.join("; ")}) — ${d.name} <${d.email}>`
+    );
+    return Response.json({ ok: true, email: false, ghl: false, filtered: true });
+  }
 
   const [email, ghl] = await Promise.all([
     emailVenue(d, eventLabel, heardLabel, srcLabel),
