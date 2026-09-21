@@ -59,7 +59,7 @@ At Dave’s request, the production access code was rotated to a memorable lower
 
 ## Email-link login
 
-`LEADS_LOGIN_EMAIL` restricts email sign-in to one server-configured address. Requests use the existing Resend sender and a fixed destination URL. Repeated requests in a five-minute bucket share an idempotency key to avoid duplicate emails; the existing POST /leads edge limit also applies. Preview deployments never send login email.
+Email sign-in is restricted to the approved list: `LEADS_LOGIN_EMAIL` (original single address) plus `LEADS_LOGIN_EMAILS` (comma-separated, added Sep 21 2026 so Dave can sign in alongside the venue). Each link is bound to the address it was issued for; removing an address from either variable revokes its pending links. Requests use the existing Resend sender and a fixed destination URL. Repeated requests in a five-minute bucket share an idempotency key to avoid duplicate emails; the existing POST /leads edge limit also applies. Preview deployments never send login email.
 
 Links are signed, expire 10–15 minutes after requesting, and require a confirmation tap before issuing the existing eight-hour session. They are bearer links reusable until expiration, not single-use tokens; do not forward them. Rotating the signing secret, passphrase, or approved email invalidates pending links. No tokens or recipient addresses are logged by the application. The page sets no-referrer and noindex. The access-code option remains a backup.
 
