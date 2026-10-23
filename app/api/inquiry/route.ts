@@ -20,7 +20,9 @@
    ============================================================ */
 
 import { notifyChristy } from "@/lib/lead-sms";
-import { assessInquiry } from "@/lib/spam";
+import { clientIp, INQUIRY_LIMITS, ipTag, originAllowed, overLimit, sourceHost } from "@/lib/guard";
+import { logLead } from "@/lib/leadLog";
+import { screen } from "@/lib/spam";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const NOTIFY_DEFAULT = "info@thegroveatdefoorfarm.com";
@@ -74,6 +76,10 @@ type Inquiry = {
   /** Milliseconds between the form mounting and submit. */
   elapsedMs?: number;
 };
+
+// Every field the form sends is text (elapsedMs is a number, attribution an
+// object). Anything else means the post did not come from our form.
+const TEXT_FIELDS = ["name", "email", "phone", "eventType", "preferredDate", "heardAbout", "message", "brideName", "groomName", "companyName", "website"];
 
 /* Fold raw first-touch data down to the one line Christy actually reads.
    UTM params (our own tagged links) outrank the referrer heuristics. */
@@ -281,8 +287,11 @@ async function pushToGHL(d: Inquiry, eventLabel: string, heardLabel: string, src
   return { ok: true };
 }
 
-/* --- Resend: email the venue a formatted inquiry --- */
-async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string, srcLabel: string) {
+/* --- Resend: email the venue a formatted inquiry ---
+   `flags` are the spam screen's reasons when it judged the inquiry
+   borderline: it still goes out, with "[Check]" in the subject and the
+   reasons listed, so a person decides. */
+async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string, srcLabel: string, flags?: string[]) {
   const key = process.env.RESEND_API_KEY;
   if (!key) {
     console.warn("RESEND_API_KEY not set — skipping venue email.");
@@ -303,6 +312,11 @@ async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string, sr
       <p style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#C8A97E;font-weight:700;margin:0 0 8px;">New Website Inquiry</p>
       <h1 style="font-family:Georgia,serif;font-size:22px;line-height:1.2;margin:0 0 4px;color:#1a1814;">${esc(d.name)}</h1>
       <p style="font-size:14px;color:#6b6355;margin:0 0 20px;">${eventLabel}</p>
+      ${
+        flags?.length
+          ? `<p style="font-size:13px;line-height:1.5;color:#7a4b00;background:#fff3cd;border-radius:6px;padding:10px 12px;margin:0 0 18px;">Check this one: the spam screen wasn&rsquo;t sure (${esc(flags.join("; "))}). It is probably a real couple.</p>`
+          : ""
+      }
       <table style="width:100%;border-collapse:collapse;">
         ${row("Email", d.email)}
         ${row("Phone", d.phone)}
@@ -335,7 +349,7 @@ async function emailVenue(d: Inquiry, eventLabel: string, heardLabel: string, sr
         from,
         to: [to],
         reply_to: d.email,
-        subject: `New inquiry: ${d.name} — ${eventLabel}`,
+        subject: `${flags?.length ? "[Check] " : ""}New inquiry: ${d.name} — ${eventLabel}`,
         html,
       }),
     });
@@ -408,29 +422,46 @@ export async function POST(request: Request) {
 
   const srcLabel = sourceLabel(d.attribution);
 
-  // Spam gate. A flagged inquiry gets the same "thanks" as a real one so the
-  // bot learns nothing, but nothing is emailed and nothing lands in GHL.
-  const verdict = assessInquiry({
-    name: d.name,
-    email: d.email,
-    phone: d.phone,
-    message: d.message,
-    preferredDate: d.preferredDate,
-    brideName: d.brideName,
-    groomName: d.groomName,
-    companyName: d.companyName,
+  // Spam gate. A held-back inquiry gets the same "thanks" as a real one so the
+  // bot learns nothing, and nothing is emailed, sent to GHL or texted, but it
+  // is kept in the Blob store under spam/ so a false positive can be
+  // recovered. Borderline ones are delivered with "[Check]" in the subject.
+  const ip = clientIp(request);
+  const check = screen(d, {
     honeypot: typeof body.website === "string" ? body.website : undefined,
-    elapsedMs: typeof body.elapsedMs === "number" ? body.elapsedMs : undefined,
+    formAge: body.elapsedMs,
+    originOk: originAllowed(request),
+    rateLimited: overLimit("inquiry", ip, INQUIRY_LIMITS),
+    malformed: TEXT_FIELDS.some((k) => {
+      const v = (body as Record<string, unknown>)[k];
+      return v !== undefined && v !== null && typeof v !== "string";
+    }),
   });
-  if (verdict.spam) {
-    console.warn(
-      `Inquiry dropped as spam (score ${verdict.score}: ${verdict.reasons.join("; ")}) — ${d.name} <${d.email}>`
+
+  const meta = {
+    formAgeMs: typeof body.elapsedMs === "number" ? Math.round(body.elapsedMs) : null,
+    from: sourceHost(request) || null,
+    ipTag: ipTag(ip),
+    userAgent: (request.headers.get("user-agent") || "").slice(0, 160),
+  };
+
+  try {
+    await logLead(
+      { ...d, eventLabel, heardLabel, sourceLabel: srcLabel, verdict: check.verdict, reasons: check.reasons, meta },
+      check.verdict === "spam" ? "spam" : "lead"
     );
-    return Response.json({ ok: true, email: false, ghl: false, filtered: true });
+  } catch (err) {
+    console.error("Inquiry log failed:", err);
   }
 
+  if (check.verdict === "spam") {
+    console.warn("Inquiry held back as spam (kept in Blob spam/)", { reasons: check.reasons, from: meta.from, ipTag: meta.ipTag });
+    return Response.json({ ok: true, email: false, ghl: false, filtered: true });
+  }
+  const flags = check.verdict === "suspect" ? check.reasons : undefined;
+
   const [email, ghl] = await Promise.all([
-    emailVenue(d, eventLabel, heardLabel, srcLabel),
+    emailVenue(d, eventLabel, heardLabel, srcLabel, flags),
     pushToGHL(d, eventLabel, heardLabel, srcLabel),
   ]);
 

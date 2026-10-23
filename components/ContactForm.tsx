@@ -26,7 +26,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   // Spam signals the API scores on. `website` is a honeypot no human sees;
-  // `startedAt` lets the server reject sub-4-second machine submissions.
+  // `startedAt` lets the server hold back sub-3-second machine submissions.
   const [website, setWebsite] = useState("");
   const [startedAt] = useState(() => Date.now());
 
