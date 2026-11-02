@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Volume2, X } from "lucide-react";
 import { markSeen, seenRecently } from "@/lib/video-popup";
@@ -30,9 +30,18 @@ function VideoDialog({ onClosed }: { onClosed: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const linkRef = useRef<HTMLAnchorElement>(null);
-  // Once sound has been on, a later mute was the visitor's choice: don't nag.
-  const soundChosen = useRef(false);
+  // True from the moment we fall back to muted until sound first comes on. After
+  // that, a later mute was the visitor's own choice, so the button stays away.
+  const offerSound = useRef(false);
   const [showSoundButton, setShowSoundButton] = useState(false);
+
+  // Runs on the video's own events, so the normal player controls count too.
+  const syncSoundButton = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (!video.muted) offerSound.current = false;
+    setShowSoundButton(offerSound.current && !video.paused && !video.ended);
+  }, []);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -61,11 +70,16 @@ function VideoDialog({ onClosed }: { onClosed: () => void }) {
       video.play().catch((error: DOMException) => {
         // AbortError just means the popup closed while play() was pending.
         if (closed || error.name === "AbortError") return;
+        // Safari fires a "play" event for the refused attempt while the video is
+        // still unmuted, so an unmuted video only counts as sound on from here.
+        offerSound.current = true;
         video.muted = true;
-        video.play().catch(() => {
+        video.play().then(syncSoundButton, () => {
           // Refused even muted (iOS Low Power Mode). The poster and controls are
           // left in place, unmuted, because pressing play there is a real tap.
-          if (!closed) video.muted = false;
+          if (closed) return;
+          offerSound.current = false;
+          video.muted = false;
         });
       });
     }
@@ -77,17 +91,9 @@ function VideoDialog({ onClosed }: { onClosed: () => void }) {
       document.body.style.overflow = overflow;
       document.body.style.paddingRight = paddingRight;
     };
-  }, []);
+  }, [syncSoundButton]);
 
   const close = () => dialogRef.current?.close();
-
-  // Runs on the video's own events, so the normal player controls count too.
-  const syncSoundButton = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (!video.muted) soundChosen.current = true;
-    setShowSoundButton(video.muted && !video.paused && !video.ended && !soundChosen.current);
-  };
 
   const turnOnSound = () => {
     const video = videoRef.current;
