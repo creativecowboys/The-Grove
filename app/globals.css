@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Screens with very little height, such as a phone held sideways. */
+@custom-variant short (@media (max-height: 30rem));
+
 @theme {
   --color-gold: #A88757;
   --color-gold-dark: #8A6D43;
@@ -31,4 +34,41 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-shadow-sm {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Homepage video popup. The panel takes the widest 16:9 video that still leaves
+   room on screen for the X above it and the booking line under it, so nothing
+   has to scroll on a phone or a short laptop. */
+.grove-popup-panel {
+  --popup-reserve: 12rem;
+  width: min(100vw - 2rem, 64rem, (100vh - var(--popup-reserve)) * 16 / 9);
+  width: min(100vw - 2rem, 64rem, (100dvh - var(--popup-reserve)) * 16 / 9);
+}
+
+@media (min-width: 40rem) {
+  .grove-popup-panel {
+    --popup-reserve: 9.5rem;
+  }
+}
+
+@media (max-height: 30rem) {
+  .grove-popup-panel {
+    --popup-reserve: 8.5rem;
+  }
+}
+
+@keyframes grove-popup-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.grove-popup {
+  animation: grove-popup-in 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grove-popup {
+    animation: none;
+  }
 }

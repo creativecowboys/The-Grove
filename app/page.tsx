@@ -8,10 +8,12 @@ import PullQuote from "@/components/PullQuote";
 import WeddingSites from "@/components/WeddingSites";
 import Amenities from "@/components/Amenities";
 import Testimonials from "@/components/Testimonials";
+import VideoPopup from "@/components/VideoPopup";
 
 export default function Home() {
   return (
     <>
+      <VideoPopup />
       <Hero />
       <StatsBar />
       <IntroSection />
