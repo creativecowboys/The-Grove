@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
+import { Volume2, X } from "lucide-react";
 import { markSeen, seenRecently } from "@/lib/video-popup";
 
 // Files in public/video carry a date in the name: when the spot changes, use a
@@ -30,6 +30,9 @@ function VideoDialog({ onClosed }: { onClosed: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const linkRef = useRef<HTMLAnchorElement>(null);
+  // Once sound has been on, a later mute was the visitor's choice: don't nag.
+  const soundChosen = useRef(false);
+  const [showSoundButton, setShowSoundButton] = useState(false);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -51,14 +54,24 @@ function VideoDialog({ onClosed }: { onClosed: () => void }) {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     video.preload = reduceMotion ? "metadata" : "auto";
     video.src = VIDEO_SRC;
+    let closed = false;
     if (!reduceMotion) {
-      // Browsers only allow autoplay when muted. If it is still refused (iOS
-      // Low Power Mode), the poster and the controls are left in place.
-      video.muted = true;
-      video.play().catch(() => {});
+      // Try with sound first. Browsers usually refuse that until the visitor has
+      // clicked something on the site, so fall back to muted to keep it moving.
+      video.play().catch((error: DOMException) => {
+        // AbortError just means the popup closed while play() was pending.
+        if (closed || error.name === "AbortError") return;
+        video.muted = true;
+        video.play().catch(() => {
+          // Refused even muted (iOS Low Power Mode). The poster and controls are
+          // left in place, unmuted, because pressing play there is a real tap.
+          if (!closed) video.muted = false;
+        });
+      });
     }
 
     return () => {
+      closed = true;
       stopVideo(video);
       if (dialog.open) dialog.close();
       document.body.style.overflow = overflow;
@@ -67,6 +80,24 @@ function VideoDialog({ onClosed }: { onClosed: () => void }) {
   }, []);
 
   const close = () => dialogRef.current?.close();
+
+  // Runs on the video's own events, so the normal player controls count too.
+  const syncSoundButton = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (!video.muted) soundChosen.current = true;
+    setShowSoundButton(video.muted && !video.paused && !video.ended && !soundChosen.current);
+  };
+
+  const turnOnSound = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    if (video.volume === 0) video.volume = 1;
+    syncSoundButton();
+    // The button is about to go away, so keep keyboard focus in the popup.
+    video.focus({ preventScroll: true });
+  };
 
   // X, Esc, the backdrop and the link all end here through the dialog's close event.
   const handleClosed = () => {
@@ -113,14 +144,32 @@ function VideoDialog({ onClosed }: { onClosed: () => void }) {
           <X className="h-7 w-7" aria-hidden="true" />
         </button>
 
-        <video
-          ref={videoRef}
-          poster={POSTER_SRC}
-          controls
-          playsInline
-          aria-label="The Grove at DeFoor Farm"
-          className="block aspect-video w-full bg-black"
-        />
+        <div className="relative">
+          {showSoundButton && (
+            // High on a phone, where the player's own controls fill the bottom
+            // half of a small video. Centered once there is room.
+            <button
+              type="button"
+              onClick={turnOnSound}
+              className="absolute left-1/2 top-[12%] z-10 flex min-h-12 -translate-x-1/2 cursor-pointer items-center gap-2.5 whitespace-nowrap bg-gold-dark px-6 text-sm font-bold tracking-widest text-white shadow-lg shadow-black/40 transition-colors hover:bg-bark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:top-1/2 sm:min-h-14 sm:-translate-y-1/2 sm:px-8 sm:text-base short:top-[12%] short:min-h-12 short:translate-y-0 short:px-6 short:text-sm"
+            >
+              <Volume2 className="h-5 w-5 shrink-0" aria-hidden="true" />
+              Turn on sound
+            </button>
+          )}
+          <video
+            ref={videoRef}
+            poster={POSTER_SRC}
+            controls
+            playsInline
+            aria-label="The Grove at DeFoor Farm"
+            onPlay={syncSoundButton}
+            onPause={syncSoundButton}
+            onEnded={syncSoundButton}
+            onVolumeChange={syncSoundButton}
+            className="block aspect-video w-full bg-black"
+          />
+        </div>
 
         <div className="flex flex-col items-center justify-center gap-3 bg-cream px-4 py-4 text-center sm:flex-row sm:gap-8 short:flex-row short:gap-4 short:px-2 short:py-2">
           <p id={BOOKING_LINE_ID} className="font-serif text-2xl italic leading-tight text-bark lining-nums sm:text-3xl short:text-xl">
