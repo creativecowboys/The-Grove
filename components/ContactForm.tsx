@@ -24,6 +24,9 @@ export default function ContactForm() {
   });
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  // What the API said went wrong. It is the only place the visitor is given the
+  // venue's address when the form itself cannot get the inquiry through.
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Spam signals the API scores on. `website` is a honeypot no human sees;
   // `startedAt` lets the server hold back sub-3-second machine submissions.
@@ -37,6 +40,7 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorMessage("");
 
     try {
       const res = await fetch("/api/inquiry", {
@@ -49,7 +53,11 @@ export default function ContactForm() {
           elapsedMs: Date.now() - startedAt,
         }),
       });
-      if (!res.ok) throw new Error("Request failed");
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        if (typeof body?.error === "string" && body.error.trim()) setErrorMessage(body.error.trim());
+        throw new Error("Request failed");
+      }
       setStatus("success");
       // Reset form
       setFormData({
@@ -93,7 +101,7 @@ export default function ContactForm() {
       {status === "error" && (
         <div className="bg-red-50 border border-red-200 text-red-800 p-4 text-sm flex items-center gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-          <span>Something went wrong. Please check your network and try again.</span>
+          <span>{errorMessage || "Something went wrong. Please check your network and try again."}</span>
         </div>
       )}
 

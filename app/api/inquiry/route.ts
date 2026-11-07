@@ -21,7 +21,7 @@
 
 import { notifyChristy } from "@/lib/lead-sms";
 import { clientIp, INQUIRY_LIMITS, ipTag, originAllowed, overLimit, sourceHost } from "@/lib/guard";
-import { logLead } from "@/lib/leadLog";
+import { logLead, mayAcknowledgeHeldBack } from "@/lib/leadLog";
 import { screen } from "@/lib/spam";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -445,20 +445,43 @@ export async function POST(request: Request) {
     userAgent: (request.headers.get("user-agent") || "").slice(0, 160),
   };
 
+  // For a held-back submission this write is the ONLY copy: nothing is emailed,
+  // pushed to GHL or texted. So whether it succeeded decides below whether we
+  // are allowed to answer "Inquiry Received!".
+  let kept = false;
   try {
-    await logLead(
-      { ...d, eventLabel, heardLabel, sourceLabel: srcLabel, verdict: check.verdict, reasons: check.reasons, meta },
-      check.verdict === "spam" ? "spam" : "lead"
+    kept = Boolean(
+      await logLead(
+        { ...d, eventLabel, heardLabel, sourceLabel: srcLabel, verdict: check.verdict, reasons: check.reasons, meta },
+        check.verdict === "spam" ? "spam" : "lead"
+      )
     );
   } catch (err) {
     console.error("Inquiry log failed:", err);
   }
 
   if (check.verdict === "spam") {
-    console.warn("Inquiry held back as spam (kept in Blob spam/)", { reasons: check.reasons, from: meta.from, ipTag: meta.ipTag });
-    return Response.json({ ok: true, email: false, ghl: false, filtered: true });
+    if (mayAcknowledgeHeldBack({
+      kept,
+      blobConfigured: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      production: process.env.VERCEL_ENV === "production",
+    })) {
+      console.warn("Inquiry held back as spam (kept in Blob spam/)", { reasons: check.reasons, from: meta.from, ipTag: meta.ipTag });
+      return Response.json({ ok: true, email: false, ghl: false, filtered: true });
+    }
+    // The one record failed to write. Saying "received" here would bin a real
+    // couple if the screen got it wrong, so say it did not go through and give
+    // them the venue's address. Indistinguishable from an outage to a bot.
+    console.error("HELD-BACK INQUIRY NOT PRESERVED — nothing was kept, delivered or sent", { reasons: check.reasons, from: meta.from, ipTag: meta.ipTag });
+    return Response.json(
+      { error: "We couldn't submit your inquiry. Please try again, or email us at info@thegroveatdefoorfarm.com." },
+      { status: 503 }
+    );
   }
-  const flags = check.verdict === "suspect" ? check.reasons : undefined;
+  // "[Check]" on the subject plus the reasons listed, so a person decides. A
+  // note is not a verdict — it rides along without having held anything back.
+  const flagged = [...(check.verdict === "suspect" ? check.reasons : []), ...check.notes];
+  const flags = flagged.length ? flagged : undefined;
 
   const [email, ghl] = await Promise.all([
     emailVenue(d, eventLabel, heardLabel, srcLabel, flags),
