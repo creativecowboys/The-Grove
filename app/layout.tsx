@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Great_Vibes, Lato } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/SiteShell";
 import ScrollToTop from "@/components/ScrollToTop";
+import { JsonLd, venueSchema } from "@/components/JsonLd";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -46,6 +47,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${lato.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white">
+        <JsonLd data={venueSchema()} />
         <ScrollToTop />
         <SiteShell>{children}</SiteShell>
       </body>

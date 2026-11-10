@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import legacy from "@/lib/legacy-content.json";
+import CityGuideSection from "@/components/CityGuide";
 
 type Block =
   | { type: "h1" | "h2" | "h3" | "h4" | "p" | "blockquote"; text: string }
@@ -127,6 +128,8 @@ export default function LegacyPage({ slug }: { slug: string }) {
               </p>
             );
           })}
+
+          <CityGuideSection slug={slug} title={entry.seoTitle || entry.title} />
 
           {/* CTA */}
           <div className="mt-16 pt-12 border-t border-bark/10 text-center">
