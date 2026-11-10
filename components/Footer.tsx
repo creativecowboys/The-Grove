@@ -1,5 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import { CITY_GUIDES, TEMPLE_SLUG, VENUE } from "@/lib/venue";
+
+const cityLinks = [
+  { label: "Wedding Venue in Temple", href: `/${TEMPLE_SLUG}` },
+  ...CITY_GUIDES.map((c) => ({ label: `Near ${c.city}`, href: `/${c.slug}` })),
+];
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -32,6 +38,35 @@ export default function Footer() {
                 {link.label}
               </Link>
             ))}
+          </nav>
+
+          {/* Address: matches the Google Business Profile word for word */}
+          <address className="not-italic text-white/60 text-sm leading-relaxed mb-2">
+            {VENUE.name}
+            <br />
+            {VENUE.street}, {VENUE.city}, {VENUE.region} {VENUE.postalCode}
+          </address>
+          <p className="text-white/60 text-sm mb-1">
+            <a href={`mailto:${VENUE.email}`} className="hover:text-gold transition-colors">
+              {VENUE.email}
+            </a>
+          </p>
+          <p className="text-white/40 text-xs mb-10">Tours by appointment · Office hours Mon–Fri, 9 AM–5 PM</p>
+
+          {/* Every city page linked from every page */}
+          <nav aria-label="Wedding venue near you" className="mb-10 max-w-3xl">
+            <p className="text-gold/80 text-[10px] tracking-[0.28em] uppercase font-bold mb-4">
+              West Georgia Wedding Venue
+            </p>
+            <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+              {cityLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-white/50 hover:text-gold text-xs transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
 
           {/* Copyright */}
